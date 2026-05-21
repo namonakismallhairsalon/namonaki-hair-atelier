@@ -1,1 +1,27 @@
-api/analyze.js
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export default async function handler(req, res) {
+  const { face } = req.body;
+
+  const response = await client.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content: "あなたはプロの美容師AIです。顔タイプに合う髪型を3つ提案してください。",
+      },
+      {
+        role: "user",
+        content: `顔タイプ: ${face}`,
+      },
+    ],
+  });
+
+  res.status(200).json({
+    result: response.choices[0].message.content,
+  });
+}
