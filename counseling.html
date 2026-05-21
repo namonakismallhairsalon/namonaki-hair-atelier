@@ -42,36 +42,30 @@ function analyze() {
 
   setTimeout(() => {
     const styles = [
-      {
-        name: "ナチュラルマッシュ",
-        desc: "柔らかい印象で万人受け",
-      },
-      {
-        name: "センターパート",
-        desc: "大人っぽく清潔感アップ",
-      },
-      {
-        name: "ツーブロック",
-        desc: "男らしく爽やかな印象",
-      },
-      {
-        name: "ゆるパーマ",
-        desc: "おしゃれ感と抜け感"
-      }
+      { name: "ナチュラルマッシュ", desc: "柔らかく万人受けする王道スタイル" },
+      { name: "センターパート", desc: "大人っぽく清潔感が出る人気ヘア" },
+      { name: "ツーブロック", desc: "爽やかで男らしい印象を強調" },
+      { name: "ゆるパーマ", desc: "抜け感とおしゃれ感を両立" }
     ];
 
-    const style = styles[Math.floor(Math.random() * styles.length)];
+    // シャッフルして3つ選ぶ
+    const shuffled = styles.sort(() => 0.5 - Math.random());
+    const picks = shuffled.slice(0, 3);
 
     result.innerHTML = `
-      <div style="
-        border:1px solid #ddd;
-        padding:15px;
-        border-radius:12px;
-        margin-top:10px;
-      ">
-        <h3>${style.name}</h3>
-        <p>${style.desc}</p>
-      </div>
+      <h3>あなたにおすすめの髪型</h3>
+
+      ${picks.map(style => `
+        <div style="
+          border:1px solid #ddd;
+          padding:15px;
+          border-radius:12px;
+          margin-top:10px;
+        ">
+          <h4>${style.name}</h4>
+          <p>${style.desc}</p>
+        </div>
+      `).join("")}
     `;
   }, 1500);
 }
