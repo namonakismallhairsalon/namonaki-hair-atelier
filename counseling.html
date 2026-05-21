@@ -17,7 +17,29 @@
 
   <br><br>
 
-  <button onclick="analyze()">診断する</button>
+  <button onclick="async function analyze() {
+  const result = document.getElementById("result");
+
+  result.innerHTML = "AIが分析中...";
+
+  const faceTypes = ["丸顔", "面長", "ベース顔", "卵型"];
+  const face = faceTypes[Math.floor(Math.random() * faceTypes.length)];
+
+  const res = await fetch("/api/analyze", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ face }),
+  });
+
+  const data = await res.json();
+
+  result.innerHTML = `
+    <h3>AI診断結果</h3>
+    <p>${data.result}</p>
+  `;
+}">診断する</button>
 
   <div id="result" style="margin-top:20px;"></div>
 
