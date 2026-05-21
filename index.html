@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>namonaki Hair Atelier</title>
-</head>
+<button onclick="goToCounseling()">AIカウンセリング開始</button>
 
-<body>
-
-  <h1>namonaki Hair Atelier</h1>
-  <p>AI Hair Counseling Experience</p>
-
-  <button id="startBtn">AIカウンセリング開始</button>
-
-  <script>
-    window.onload = function () {
-      const btn = document.getElementById("startBtn");
-
-      btn.addEventListener("click", function () {
-        alert("AIカウンセリングを開始します");
-      });
-    };
-  </script>
-
-</body>
-</html>
+<script>
+  function goToCounseling() {
+    window.location.href = "/counseling.html";
+  }
+</script>
