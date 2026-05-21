@@ -1,12 +1,151 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>namonaki Hair Atelier</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>namonaki Hair Atelier</title>
+
+<style>
+body{
+  margin:0;
+  background:#f4f4f4;
+  font-family:sans-serif;
+}
+.container{
+  max-width:420px;
+  margin:20px auto;
+  background:#fff;
+  border-radius:24px;
+  padding:20px;
+  box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+h1{
+  margin:0;
+}
+button{
+  border:none;
+  border-radius:16px;
+  padding:14px;
+  cursor:pointer;
+}
+.main-btn{
+  width:100%;
+  background:black;
+  color:white;
+  margin-top:20px;
+}
+.choice{
+  background:#eee;
+  margin-right:8px;
+}
+.active{
+  background:black;
+  color:white;
+}
+#preview{
+  width:100%;
+  border-radius:20px;
+  margin-top:15px;
+  display:none;
+}
+.result-item{
+  background:#f5f5f5;
+  padding:12px;
+  border-radius:14px;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>namonaki Hair Atelier</h1>
+  <p>AI Hairstyle Recommendation</p>
+
+  <input type="file" id="photo" accept="image/*">
+
+  <img id="preview">
+
+  <div style="margin-top:20px;">
+    <button id="menBtn" class="choice active">
+      メンズ
+    </button>
+
+    <button id="womenBtn" class="choice">
+      レディース
+    </button>
+  </div>
+
+  <button class="main-btn" onclick="recommend()">
+    AIで似合う髪型を見る
+  </button>
+
+  <div id="results"></div>
+</div>
+
+<script>
+let gender = "men";
+
+const styles = {
+  men: [
+    "ナチュラルマッシュ",
+    "センターパート",
+    "スパイラルパーマ",
+    "アップバング"
+  ],
+  women: [
+    "韓国レイヤー",
+    "ボブ",
+    "ウルフカット",
+    "ゆるふわパーマ"
+  ]
+};
+
+document.getElementById("photo")
+.addEventListener("change", function(e){
+  const file = e.target.files[0];
+  if(file){
+    const img = document.getElementById("preview");
+    img.src = URL.createObjectURL(file);
+    img.style.display = "block";
+  }
+});
+
+document.getElementById("menBtn")
+.addEventListener("click", ()=>{
+  gender = "men";
+  menBtn.classList.add("active");
+  womenBtn.classList.remove("active");
+});
+
+document.getElementById("womenBtn")
+.addEventListener("click", ()=>{
+  gender = "women";
+  womenBtn.classList.add("active");
+  menBtn.classList.remove("active");
+});
+
+function recommend(){
+  const resultBox =
+    document.getElementById("results");
+
+  resultBox.innerHTML =
+    "<h3>おすすめスタイル</h3>";
+
+  const shuffled =
+    styles[gender]
+    .sort(()=>0.5-Math.random())
+    .slice(0,3);
+
+  shuffled.forEach(style=>{
+    resultBox.innerHTML +=
+      `<div class="result-item">
+      ✂ ${style}
+      </div>`;
+  });
+}
+</script>
+
+</body>
 </html>
