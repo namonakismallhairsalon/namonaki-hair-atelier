@@ -38,7 +38,20 @@ function previewImage(event) {
 function analyze() {
   const result = document.getElementById("result");
 
-  result.innerHTML = "分析中...";
+  result.innerHTML = `
+    <div style="text-align:center; padding:20px;">
+      <div style="
+        width:40px;
+        height:40px;
+        border:4px solid #ddd;
+        border-top:4px solid #333;
+        border-radius:50%;
+        margin:0 auto 10px;
+        animation: spin 1s linear infinite;
+      "></div>
+      <p>AIがあなたの顔を分析中...</p>
+    </div>
+  `;
 
   setTimeout(() => {
     const faceTypes = [
@@ -56,7 +69,6 @@ function analyze() {
     ];
 
     const face = faceTypes[Math.floor(Math.random() * faceTypes.length)];
-
     const shuffled = styles.sort(() => 0.5 - Math.random());
     const picks = shuffled.slice(0, 3);
 
