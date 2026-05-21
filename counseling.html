@@ -38,19 +38,41 @@ function previewImage(event) {
 function analyze() {
   const result = document.getElementById("result");
 
-  result.innerText = "分析中...";
+  result.innerHTML = "分析中...";
 
   setTimeout(() => {
     const styles = [
-      "ナチュラルマッシュがおすすめです",
-      "センターパートが似合います",
-      "ツーブロックで清潔感アップ",
-      "ゆるめパーマが相性良いです"
+      {
+        name: "ナチュラルマッシュ",
+        desc: "柔らかい印象で万人受け",
+      },
+      {
+        name: "センターパート",
+        desc: "大人っぽく清潔感アップ",
+      },
+      {
+        name: "ツーブロック",
+        desc: "男らしく爽やかな印象",
+      },
+      {
+        name: "ゆるパーマ",
+        desc: "おしゃれ感と抜け感"
+      }
     ];
 
-    const random = styles[Math.floor(Math.random() * styles.length)];
+    const style = styles[Math.floor(Math.random() * styles.length)];
 
-    result.innerText = "診断結果: " + random;
+    result.innerHTML = `
+      <div style="
+        border:1px solid #ddd;
+        padding:15px;
+        border-radius:12px;
+        margin-top:10px;
+      ">
+        <h3>${style.name}</h3>
+        <p>${style.desc}</p>
+      </div>
+    `;
   }, 1500);
 }
 </script>
