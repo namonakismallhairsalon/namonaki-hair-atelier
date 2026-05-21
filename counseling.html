@@ -11,7 +11,9 @@
   <p>あなたに似合う髪型を診断します</p>
 
   <h2>顔写真をアップロード</h2>
-  <input type="file" accept="image/*">
+  <input type="file" accept="image/*" onchange="previewImage(event)">
+
+<img id="preview" style="max-width:200px; display:none; margin-top:10px;">
 
   <br><br>
 
@@ -23,6 +25,16 @@
   <button onclick="history.back()">戻る</button>
 
   <script>
+function previewImage(event) {
+  const file = event.target.files[0];
+  const preview = document.getElementById("preview");
+
+  if (file) {
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+  }
+}
+
 function analyze() {
   const result = document.getElementById("result");
 
