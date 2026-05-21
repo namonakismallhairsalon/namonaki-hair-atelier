@@ -11,20 +11,33 @@
   <p>あなたに似合う髪型を診断します</p>
 
   <h2>顔写真をアップロード</h2>
-<script>
-function analyze() {
-  console.log("clicked"); // ← 動作確認用
+  <input type="file" accept="image/*">
 
-  const styles = [
-    "ナチュラルマッシュがおすすめです",
-    "センターパートが似合います",
-    "ツーブロックで清潔感アップ",
-    "ゆるめパーマが相性良いです"
-  ];
+  <br><br>
 
-  const random = styles[Math.floor(Math.random() * styles.length)];
+  <!-- ★ここが重要（消えてる可能性大） -->
+  <button onclick="analyze()">診断する</button>
 
-  document.getElementById("result").innerText =
-    "診断結果: " + random;
-}
-</script>
+  <p id="result"></p>
+
+  <br>
+  <button onclick="history.back()">戻る</button>
+
+  <script>
+    function analyze() {
+      const styles = [
+        "ナチュラルマッシュがおすすめです",
+        "センターパートが似合います",
+        "ツーブロックで清潔感アップ",
+        "ゆるめパーマが相性良いです"
+      ];
+
+      const random = styles[Math.floor(Math.random() * styles.length)];
+
+      document.getElementById("result").innerText =
+        "診断結果: " + random;
+    }
+  </script>
+
+</body>
+</html>
