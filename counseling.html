@@ -15,7 +15,6 @@
 
   <br><br>
 
-  <!-- ★ここが重要（消えてる可能性大） -->
   <button onclick="analyze()">診断する</button>
 
   <p id="result"></p>
@@ -24,20 +23,25 @@
   <button onclick="history.back()">戻る</button>
 
   <script>
-    function analyze() {
-      const styles = [
-        "ナチュラルマッシュがおすすめです",
-        "センターパートが似合います",
-        "ツーブロックで清潔感アップ",
-        "ゆるめパーマが相性良いです"
-      ];
+function analyze() {
+  const result = document.getElementById("result");
 
-      const random = styles[Math.floor(Math.random() * styles.length)];
+  result.innerText = "分析中...";
 
-      document.getElementById("result").innerText =
-        "診断結果: " + random;
-    }
-  </script>
+  setTimeout(() => {
+    const styles = [
+      "ナチュラルマッシュがおすすめです",
+      "センターパートが似合います",
+      "ツーブロックで清潔感アップ",
+      "ゆるめパーマが相性良いです"
+    ];
+
+    const random = styles[Math.floor(Math.random() * styles.length)];
+
+    result.innerText = "診断結果: " + random;
+  }, 1500);
+}
+</script>
 
 </body>
 </html>
