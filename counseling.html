@@ -13,6 +13,8 @@
   <h2>顔写真をアップロード</h2>
 <script>
 function analyze() {
+  console.log("clicked"); // ← 動作確認用
+
   const styles = [
     "ナチュラルマッシュがおすすめです",
     "センターパートが似合います",
@@ -26,22 +28,3 @@ function analyze() {
     "診断結果: " + random;
 }
 </script>
-
-  <input type="file" accept="image/*">
-  <br><br>
-
-  <button onclick="analyze()">診断する</button>
-
-  <p id="result"></p>
-
-  <button onclick="history.back()">戻る</button>
-
-  <script>
-    function analyze() {
-      document.getElementById("result").innerText =
-        "分析中... あなたに似合うスタイルを計算しています";
-    }
-  </script>
-
-</body>
-</html>
