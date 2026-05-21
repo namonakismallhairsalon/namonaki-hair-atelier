@@ -1,168 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>namonaki Hair Atelier</title>
-
-<style>
-<script>
-  const btn = document.getElementById("startBtn");
-
- <button id="startBtn">AIカウンセリング開始</button>
-</script>
-body{
-  margin:0;
-  font-family:sans-serif;
-  background: linear-gradient(180deg,#f7f7f7,#ffffff);
-}
-.container{
-  max-width:420px;
-  margin:20px auto;
-  background:#fff;
-  border-radius:28px;
-  padding:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-h1{
-  margin:0;
-  font-size:22px;
-}
-.sub{
-  color:#666;
-  font-size:13px;
-}
-button{
-  border:none;
-  border-radius:16px;
-  padding:12px;
-  cursor:pointer;
-}
-.row{
-  display:flex;
-  gap:10px;
-}
-.choice{
-  flex:1;
-  background:#eee;
-}
-.active{
-  background:#111;
-  color:white;
-}
-.main-btn{
-  width:100%;
-  margin-top:18px;
-  background:#111;
-  color:#fff;
-}
-img{
-  width:100%;
-  border-radius:20px;
-  margin-top:12px;
-  display:none;
-}
-.card{
-  background:#f6f6f6;
-  padding:14px;
-  border-radius:16px;
-  margin-top:10px;
-}
-.ai{
-  font-size:13px;
-  color:#444;
-  margin-top:10px;
-  line-height:1.5;
-}
-.badge{
-  display:inline-block;
-  padding:4px 10px;
-  background:#eee;
-  border-radius:999px;
-  font-size:12px;
-  margin-top:6px;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>namonaki Hair Atelier</title>
 </head>
 
 <body>
 
-<div class="container">
   <h1>namonaki Hair Atelier</h1>
-  <div class="sub">AI Hair Counseling Experience</div>
+  <p>AI Hair Counseling Experience</p>
 
-  <input type="file" id="photo" accept="image/*">
+  <button id="startBtn">AIカウンセリング開始</button>
 
-  <img id="preview">
+  <script>
+    window.onload = function () {
+      const btn = document.getElementById("startBtn");
 
-  <div class="row" style="margin-top:15px;">
-    <button id="menBtn" class="choice active">メンズ</button>
-    <button id="womenBtn" class="choice">レディース</button>
-  </div>
+      btn.addEventListener("click", function () {
+        alert("AIカウンセリングを開始します");
+      });
+    };
+  </script>
 
-  <button class="main-btn" onclick="runAI()">
-    AIカウンセリング開始
-  </button>
-
-  <div id="result"></div>
-</div>
-
-<script>
-let gender = "men";
-
-const styles = {
-  men: [
-    {name:"ナチュラルマッシュ", desc:"柔らかい印象・万人ウケ"},
-    {name:"センターパート", desc:"大人っぽさ・清潔感UP"},
-    {name:"スパイラルパーマ", desc:"動きのある個性派スタイル"},
-    {name:"アップバング", desc:"爽やかで男らしい印象"}
-  ],
-  women: [
-    {name:"韓国レイヤー", desc:"小顔効果・今っぽさ"},
-    {name:"ボブ", desc:"シンプルで可愛い定番"},
-    {name:"ウルフカット", desc:"抜け感・おしゃれ上級者"},
-    {name:"ゆるふわパーマ", desc:"柔らかく女性らしい印象"}
-  ]
-};
-
-document.getElementById("photo")
-.addEventListener("change", e=>{
-  const file = e.target.files[0];
-  if(file){
-    const img = document.getElementById("preview");
-    img.src = URL.createObjectURL(file);
-    img.style.display = "block";
-  }
-});
-
-document.getElementById("menBtn")
-.onclick = ()=>{
-  gender="men";
-  menBtn.classList.add("active");
-  womenBtn.classList.remove("active");
-};
-
-document.getElementById("womenBtn")
-.onclick = ()=>{
-  gender="women";
-  womenBtn.classList.add("active");
-  menBtn.classList.remove("active");
-};
-
-function runAI(){
-
-  const result = document.getElementById("result");
-  result.innerHTML = "";
-
-  const data = styles[gender];
-
-  const picked = [...data]
-    .sort(()=>Math.random()-0.5)
-    .slice(0,3);
-
-  result.innerHTML += `
-    <div class="ai">
-      ✂ AIカウンセリング結果<br><br>
-      ・顔立ちバランスから「清潔感×柔らかさ」が強み<br>
-      ・全体的に“ナチュラル系”が最も相性◎<br>
-      ・重す
+</body>
+</html>
