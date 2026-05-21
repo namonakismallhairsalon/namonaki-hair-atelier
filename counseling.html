@@ -11,6 +11,21 @@
   <p>あなたに似合う髪型を診断します</p>
 
   <h2>顔写真をアップロード</h2>
+<script>
+function analyze() {
+  const styles = [
+    "ナチュラルマッシュがおすすめです",
+    "センターパートが似合います",
+    "ツーブロックで清潔感アップ",
+    "ゆるめパーマが相性良いです"
+  ];
+
+  const random = styles[Math.floor(Math.random() * styles.length)];
+
+  document.getElementById("result").innerText =
+    "診断結果: " + random;
+}
+</script>
 
   <input type="file" accept="image/*">
   <br><br>
