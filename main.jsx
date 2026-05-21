@@ -116,3 +116,18 @@ function App() {
 ReactDOM.createRoot(
   document.getElementById("root")
 ).render(<App />);
+<h2>顔写真をアップロード</h2>
+
+<input type="file" accept="image/*">
+<br><br>
+
+<button onclick="analyze()">診断する</button>
+
+<p id="result"></p>
+
+<script>
+function analyze() {
+  document.getElementById("result").innerText =
+    "分析中... あなたに似合うスタイルを計算しています";
+}
+</script>
