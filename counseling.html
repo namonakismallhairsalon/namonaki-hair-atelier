@@ -41,6 +41,13 @@ function analyze() {
   result.innerHTML = "分析中...";
 
   setTimeout(() => {
+    const faceTypes = [
+      "丸顔タイプ",
+      "面長タイプ",
+      "ベース顔タイプ",
+      "卵型タイプ"
+    ];
+
     const styles = [
       { name: "ナチュラルマッシュ", desc: "柔らかく万人受けする王道スタイル" },
       { name: "センターパート", desc: "大人っぽく清潔感が出る人気ヘア" },
@@ -48,24 +55,32 @@ function analyze() {
       { name: "ゆるパーマ", desc: "抜け感とおしゃれ感を両立" }
     ];
 
-    // シャッフルして3つ選ぶ
+    const face = faceTypes[Math.floor(Math.random() * faceTypes.length)];
+
     const shuffled = styles.sort(() => 0.5 - Math.random());
     const picks = shuffled.slice(0, 3);
 
     result.innerHTML = `
-      <h3>あなたにおすすめの髪型</h3>
+      <div style="margin-bottom:15px;">
+        <h3>顔タイプ診断</h3>
+        <p style="font-size:18px;"><b>${face}</b></p>
+      </div>
 
-      ${picks.map(style => `
-        <div style="
-          border:1px solid #ddd;
-          padding:15px;
-          border-radius:12px;
-          margin-top:10px;
-        ">
-          <h4>${style.name}</h4>
-          <p>${style.desc}</p>
-        </div>
-      `).join("")}
+      <div>
+        <h3>おすすめヘアスタイル</h3>
+
+        ${picks.map(style => `
+          <div style="
+            border:1px solid #ddd;
+            padding:15px;
+            border-radius:12px;
+            margin-top:10px;
+          ">
+            <h4>${style.name}</h4>
+            <p>${style.desc}</p>
+          </div>
+        `).join("")}
+      </div>
     `;
   }, 1500);
 }
