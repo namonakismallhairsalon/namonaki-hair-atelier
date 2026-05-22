@@ -312,8 +312,63 @@ const advice = [
       )
       .slice(0, 3);
 
-    result.innerHTML = `
-      <div class="result-card">
+    const vibe =
+  vibes[
+    Math.floor(
+      Math.random()
+      * vibes.length
+    )
+  ];
+
+const tip =
+  advice[
+    Math.floor(
+      Math.random()
+      * advice.length
+    )
+  ];
+
+result.innerHTML = `
+  <div class="result-card">
+
+    <h2>
+      ✨ AI診断結果
+    </h2>
+
+    <p>
+      <b>顔タイプ:</b>
+      ${face}
+    </p>
+
+    <p>
+      <b>雰囲気分析:</b>
+      ${vibe}
+    </p>
+
+    <p>
+      <b>似合う理由:</b><br>
+      顔型や雰囲気に合わせて
+      バランス良く見える
+      スタイルを選びました。
+    </p>
+
+    <p>
+      <b>おすすめスタイル</b>
+    </p>
+
+    <ul>
+      ${picks.map(style =>
+        `<li>✂ ${style}</li>`
+      ).join("")}
+    </ul>
+
+    <p>
+      <b>NAMONAKIアドバイス:</b><br>
+      ${tip}
+    </p>
+
+  </div>
+`;
 
       <h2>
         ✨ AI診断結果
