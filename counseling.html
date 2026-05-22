@@ -182,6 +182,23 @@ NAMONAKI HAIR ATELIER
 </p>
 
 <div class="upload-box">
+<div class="gender-select">
+  <button
+    class="gender-btn active"
+    id="mensBtn"
+    onclick="setGender('mens')"
+  >
+    メンズ
+  </button>
+
+  <button
+    class="gender-btn"
+    id="ladiesBtn"
+    onclick="setGender('ladies')"
+  >
+    レディース
+  </button>
+</div>
 <h3>顔写真をアップロード</h3>
 
 <label class="file-btn">
@@ -223,6 +240,25 @@ onclick="history.back()"
 
 </div>
 
+.gender-select {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.gender-btn {
+  flex: 1;
+  background: #ece7df;
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.gender-btn.active {
+  background: #1f1f1f;
+  color: white;
+}
 <script>
 function previewImage(event) {
   const file =
