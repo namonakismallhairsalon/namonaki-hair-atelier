@@ -333,14 +333,44 @@ function analyze() {
     );
 
   result.innerHTML = `
-    <div style="text-align:center;">
-      <div class="loader"></div>
-      <h3>AI分析中...</h3>
-      <p>
-        顔型・骨格・雰囲気を診断しています
-      </p>
-    </div>
-  `;
+  <div style="text-align:center;">
+    <div class="loader"></div>
+
+    <h3>AI分析中...</h3>
+
+    <p id="loadingText">
+      顔バランスを分析中...
+    </p>
+  </div>
+`;
+
+const loadingMessages = [
+  "顔バランスを分析中...",
+  "骨格を分析中...",
+  "雰囲気データを解析中...",
+  "似合う髪型を提案中..."
+];
+
+let loadingIndex = 0;
+
+const loadingAnimation =
+setInterval(() => {
+
+  loadingIndex++;
+
+  if (
+    loadingIndex <
+    loadingMessages.length
+  ) {
+    document.getElementById(
+      "loadingText"
+    ).textContent =
+      loadingMessages[
+        loadingIndex
+      ];
+  }
+
+}, 600);
 
   setTimeout(() => {
 
