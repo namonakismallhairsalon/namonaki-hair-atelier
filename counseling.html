@@ -123,8 +123,12 @@ function analyze() {
   const result =
     document.getElementById("result");
 
-  result.innerHTML =
-    "<p>AIが分析中...</p>";
+  result.innerHTML = `
+  <div style="text-align:center; padding:20px;">
+    <div class="loader"></div>
+    <p>AIがあなたの顔を分析中...</p>
+  </div>
+`;
 
   setTimeout(() => {
 
