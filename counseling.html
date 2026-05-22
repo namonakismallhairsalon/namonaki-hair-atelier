@@ -450,72 +450,105 @@ const score =
     Math.random() * 13
   ) + 86;
 
-    result.innerHTML = `
-      <div class="result-card">
+   result.innerHTML = `
+  <div class="result-card">
 
-        <h2>
-          ✨ AI診断結果
-        </h2>
+    <h2>✨ AI診断結果</h2>
 
-<div style="
-  text-align:center;
-  margin-bottom:20px;
-">
-  <div style="
-    font-size:12px;
-    letter-spacing:2px;
-    color:#888;
-  ">
-    NAMONAKI AI SCORE
-  </div>
+    <div style="
+      text-align:center;
+      margin-bottom:20px;
+    ">
+      <div style="
+        font-size:12px;
+        letter-spacing:2px;
+        color:#888;
+      ">
+        NAMONAKI AI SCORE
+      </div>
 
-  <div style="
-    font-size:34px;
-    font-weight:bold;
-  ">
-    ${score}%
-  </div>
+      <div style="
+        font-size:40px;
+        font-weight:bold;
+      ">
+        ${score}%
+      </div>
 
-  <div style="
-    color:#777;
-    font-size:13px;
-  ">
-    MATCH
-  </div>
-</div>
-
-        <p>
-          <b>顔タイプ:</b>
-          ${face}
-        </p>
-
-        <p>
-          <b>雰囲気分析:</b>
-          ${vibe}
-        </p>
-
-        <p>
-          <b>似合う理由:</b><br>
-          顔型や雰囲気に合わせて
-          バランス良く見える
-          スタイルを選びました。
-        </p>
-
-        <p>
-          <b>おすすめスタイル</b>
-        </p>
-
-        <div class="style-grid">
-  ${picks.map(style => `
-    <div class="style-card">
-      <img
-        src="${hairstyleImages[style]}"
-        alt="${style}"
-      >
-      <p>✂ ${style}</p>
+      <div style="
+        color:#777;
+        font-size:13px;
+      ">
+        MATCH
+      </div>
     </div>
-  `).join("")}
-</div>
+
+    <div style="
+      background:#f8f8f8;
+      border-radius:18px;
+      padding:16px;
+      margin-bottom:15px;
+      text-align:left;
+    ">
+      <p><b>顔タイプ</b><br>${face}</p>
+
+      <p><b>雰囲気分析</b><br>${vibe}</p>
+
+      <p>
+        <b>骨格分析</b><br>
+        顔まわりのバランスから、
+        シルエットに動きを出すと
+        小顔効果が期待できます。
+      </p>
+
+      <p>
+        <b>髪質予測</b><br>
+        柔らかめ〜普通毛向き。
+        軽さと束感のあるデザインが◎
+      </p>
+
+      <p>
+        <b>似合う理由</b><br>
+        顔型・雰囲気・全体バランスを
+        AI分析し、印象が良く見える
+        スタイルを選びました。
+      </p>
+
+      <p>
+        <b>避けたいスタイル</b><br>
+        重すぎるシルエットは
+        顔型が強く見える可能性があります。
+      </p>
+    </div>
+
+    <p><b>おすすめスタイル</b></p>
+
+    <div class="style-grid">
+      ${picks.map(style => `
+        <div class="style-card">
+          <img
+            src="${hairstyleImages[style]}"
+            alt="${style}"
+          >
+          <p>✂ ${style}</p>
+        </div>
+      `).join("")}
+    </div>
+
+    <div style="
+      background:black;
+      color:white;
+      padding:18px;
+      border-radius:18px;
+      margin-top:20px;
+    ">
+      <b>NAMONAKI美容師コメント</b><br><br>
+      ${tip}<br><br>
+      顔まわりに少し動きを作ると、
+      あなたらしさがより引き立ちます。
+    </div>
+
+  </div>
+`;
 
         <p>
           <b>NAMONAKIアドバイス:</b><br>
