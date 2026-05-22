@@ -20,6 +20,7 @@ function App() {
   const [gender, setGender] = useState("men");
   const [photo, setPhoto] = useState(null);
   const [result, setResult] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handlePhoto = (e) => {
     const file = e.target.files?.[0];
@@ -29,10 +30,16 @@ function App() {
   };
 
   const recommendStyle = () => {
-    const shuffled = [...styles[gender]].sort(
-      () => 0.5 - Math.random()
-    );
-    setResult(shuffled.slice(0, 3));
+    setLoading(true);
+
+    setTimeout(() => {
+      const shuffled = [...styles[gender]].sort(
+        () => 0.5 - Math.random()
+      );
+
+      setResult(shuffled.slice(0, 3));
+      setLoading(false);
+    }, 2000);
   };
 
   return (
@@ -50,11 +57,14 @@ function App() {
           margin: "0 auto",
           background: "white",
           borderRadius: "24px",
-          padding: "20px"
+          padding: "20px",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.08)"
         }}
       >
         <h1>namonaki Hair Atelier</h1>
-        <p>AI Hairstyle Recommendation</p>
+        <p>あなたに似合う髪型を診断します</p>
+
+        <h3>顔写真をアップロード</h3>
 
         <input
           type="file"
@@ -75,7 +85,9 @@ function App() {
         )}
 
         <div style={{ marginTop: "20px" }}>
-          <button onClick={() => setGender("men")}>
+          <button
+            onClick={() => setGender("men")}
+          >
             メンズ
           </button>
 
@@ -92,13 +104,20 @@ function App() {
           style={{
             width: "100%",
             marginTop: "20px",
-            padding: "14px"
+            padding: "14px",
+            borderRadius: "12px"
           }}
         >
           AIで似合う髪型を見る
         </button>
 
-        {result.length > 0 && (
+        {loading && (
+          <p style={{ marginTop: "15px" }}>
+            分析中... ✨
+          </p>
+        )}
+
+        {result.length > 0 && !loading && (
           <div style={{ marginTop: "20px" }}>
             <h2>おすすめスタイル</h2>
             {result.map((item, index) => (
@@ -116,18 +135,3 @@ function App() {
 ReactDOM.createRoot(
   document.getElementById("root")
 ).render(<App />);
-<h2>顔写真をアップロード</h2>
-
-<input type="file" accept="image/*">
-<br><br>
-
-<button onclick="analyze()">診断する</button>
-
-<p id="result"></p>
-
-<script>
-function analyze() {
-  document.getElementById("result").innerText =
-    "分析中... あなたに似合うスタイルを計算しています";
-}
-</script>
