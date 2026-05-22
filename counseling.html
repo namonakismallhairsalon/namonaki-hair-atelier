@@ -164,6 +164,26 @@ button {
 .result-card li {
   margin-bottom: 8px;
 }
+
+.gender-select {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.gender-btn {
+  flex: 1;
+  background: #ece7df;
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.gender-btn.active {
+  background: #1f1f1f;
+  color: white;
+}
 </style>
 </head>
 
@@ -240,25 +260,6 @@ onclick="history.back()"
 
 </div>
 
-.gender-select {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.gender-btn {
-  flex: 1;
-  background: #ece7df;
-  border: none;
-  border-radius: 14px;
-  padding: 12px;
-  font-size: 14px;
-}
-
-.gender-btn.active {
-  background: #1f1f1f;
-  color: white;
-}
 <script>
 function setGender(gender) {
   selectedGender = gender;
