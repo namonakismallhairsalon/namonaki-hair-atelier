@@ -1,52 +1,95 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>カウンセリング</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIカウンセリング</title>
+
+<style>
+body {
+  font-family: sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  background: white;
+  max-width: 450px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+#preview {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 15px;
+  display: none;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.diagnose-btn {
+  background: black;
+  color: white;
+}
+
+.back-btn {
+  background: #ddd;
+}
+</style>
 </head>
 
 <body>
 
-  <h1>カウンセリング画面</h1>
-  <p>あなたに似合う髪型を診断します</p>
+<div class="container">
 
-  <h2>顔写真をアップロード</h2>
-  <input type="file" accept="image/*" onchange="previewImage(event)">
+<h1>カウンセリング画面</h1>
 
-<img id="preview" style="max-width:200px; display:none; margin-top:10px;">
+<p>あなたに似合う髪型を診断します</p>
 
-  <br><br>
+<h3>顔写真をアップロード</h3>
 
-  <button onclick="async function analyze() {
-  const result = document.getElementById("result");
+<input
+  type="file"
+  accept="image/*"
+  onchange="previewImage(event)"
+>
 
-  result.innerHTML = "AIが分析中...";
+<img id="preview">
 
-  const faceTypes = ["丸顔", "面長", "ベース顔", "卵型"];
-  const face = faceTypes[Math.floor(Math.random() * faceTypes.length)];
+<button
+  class="diagnose-btn"
+  onclick="analyze()"
+>
+診断する
+</button>
 
-  const res = await fetch("/api/analyze", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ face }),
-  });
+<div id="result"></div>
 
-  const data = await res.json();
+<button
+  class="back-btn"
+  onclick="history.back()"
+>
+戻る
+</button>
 
-  result.innerHTML = `
-    <h3>AI診断結果</h3>
-    <p>${data.result}</p>
-  `;
-}">診断する</button>
+</div>
 
-  <div id="result" style="margin-top:20px;"></div>
-
-  <br>
-  <button onclick="history.back()">戻る</button>
-
-  <script>
+<script>
 function previewImage(event) {
   const file = event.target.files[0];
   const preview = document.getElementById("preview");
@@ -58,24 +101,14 @@ function previewImage(event) {
 }
 
 function analyze() {
-  const result = document.getElementById("result");
+  const result =
+    document.getElementById("result");
 
-  result.innerHTML = `
-    <div style="text-align:center; padding:20px;">
-      <div style="
-        width:40px;
-        height:40px;
-        border:4px solid #ddd;
-        border-top:4px solid #333;
-        border-radius:50%;
-        margin:0 auto 10px;
-        animation: spin 1s linear infinite;
-      "></div>
-      <p>AIがあなたの顔を分析中...</p>
-    </div>
-  `;
+  result.innerHTML =
+    "<p>AIが分析中...</p>";
 
   setTimeout(() => {
+
     const faceTypes = [
       "丸顔タイプ",
       "面長タイプ",
@@ -84,38 +117,39 @@ function analyze() {
     ];
 
     const styles = [
-      { name: "ナチュラルマッシュ", desc: "柔らかく万人受けする王道スタイル" },
-      { name: "センターパート", desc: "大人っぽく清潔感が出る人気ヘア" },
-      { name: "ツーブロック", desc: "爽やかで男らしい印象を強調" },
-      { name: "ゆるパーマ", desc: "抜け感とおしゃれ感を両立" }
+      "ナチュラルマッシュ",
+      "センターパート",
+      "ツーブロック",
+      "ゆるパーマ"
     ];
 
-    const face = faceTypes[Math.floor(Math.random() * faceTypes.length)];
-    const shuffled = styles.sort(() => 0.5 - Math.random());
-    const picks = shuffled.slice(0, 3);
+    const face =
+      faceTypes[
+        Math.floor(
+          Math.random()
+          * faceTypes.length
+        )
+      ];
+
+    const picks =
+      styles
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 3);
 
     result.innerHTML = `
-      <div style="margin-bottom:15px;">
-        <h3>顔タイプ診断</h3>
-        <p style="font-size:18px;"><b>${face}</b></p>
-      </div>
+      <h3>AI診断結果</h3>
 
-      <div>
-        <h3>おすすめヘアスタイル</h3>
+      <p><b>顔タイプ:</b> ${face}</p>
 
-        ${picks.map(style => `
-          <div style="
-            border:1px solid #ddd;
-            padding:15px;
-            border-radius:12px;
-            margin-top:10px;
-          ">
-            <h4>${style.name}</h4>
-            <p>${style.desc}</p>
-          </div>
-        `).join("")}
-      </div>
+      <p><b>おすすめ:</b></p>
+
+      <ul>
+        ${picks.map(style =>
+          `<li>${style}</li>`
+        ).join("")}
+      </ul>
     `;
+
   }, 1500);
 }
 </script>
