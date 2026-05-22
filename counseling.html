@@ -456,11 +456,17 @@ const hairstyleImages = {
           <b>おすすめスタイル</b>
         </p>
 
-        <ul>
-          ${picks.map(style =>
-            `<li>✂ ${style}</li>`
-          ).join("")}
-        </ul>
+        <div class="style-grid">
+  ${picks.map(style => `
+    <div class="style-card">
+      <img
+        src="${hairstyleImages[style]}"
+        alt="${style}"
+      >
+      <p>✂ ${style}</p>
+    </div>
+  `).join("")}
+</div>
 
         <p>
           <b>NAMONAKIアドバイス:</b><br>
