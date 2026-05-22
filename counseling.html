@@ -422,6 +422,80 @@ const hairstyleImages = {
         )
       ];
 
+let boneAnalysis = "";
+let hairType = "";
+let avoidStyle = "";
+let aiReason = "";
+let proComment = "";
+
+if (face === "丸顔タイプ") {
+  boneAnalysis =
+    "横幅バランスが柔らかめ。トップに高さを出すと小顔効果◎";
+
+  hairType =
+    "柔らかめ〜普通毛向き。束感スタイルと相性良し。";
+
+  avoidStyle =
+    "重すぎる前髪や横に広がるスタイル";
+
+  aiReason =
+    "縦ラインを意識することで輪郭バランスが整います。";
+
+  proComment =
+    "顔まわりに動きを作ると、柔らかい魅力がさらに引き立ちます。";
+}
+
+else if (face === "面長タイプ") {
+  boneAnalysis =
+    "縦ラインが強め。横のボリュームを足すとバランス◎";
+
+  hairType =
+    "ナチュラル質感が似合いやすい傾向。";
+
+  avoidStyle =
+    "トップを高くしすぎるスタイル";
+
+  aiReason =
+    "横のシルエットを作ることで優しい印象になります。";
+
+  proComment =
+    "前髪や顔まわりで抜け感を作るのがおすすめ。";
+}
+
+else if (face === "ベース顔タイプ") {
+  boneAnalysis =
+    "フェイスラインがしっかり。柔らかい動きが相性◎";
+
+  hairType =
+    "レイヤー系や毛流れ系がハマりやすい。";
+
+  avoidStyle =
+    "輪郭を強調する重ためライン";
+
+  aiReason =
+    "丸みを作ることで全体バランスが整います。";
+
+  proComment =
+    "毛先に軽さを出すと一気に垢抜けます。";
+}
+
+else {
+  boneAnalysis =
+    "バランス型。幅広いデザインが似合います。";
+
+  hairType =
+    "比較的どんな質感にも対応可能。";
+
+  avoidStyle =
+    "極端な重軽バランス";
+
+  aiReason =
+    "全体バランスが良いため、デザイン幅が広いです。";
+
+  proComment =
+    "トレンドヘアとの相性がかなり良いタイプ。";
+}
+
     const picks =
       [...styles]
       .sort(() =>
