@@ -260,6 +260,27 @@ onclick="history.back()"
   color: white;
 }
 <script>
+function setGender(gender) {
+  selectedGender = gender;
+
+  document
+    .getElementById("mensBtn")
+    .classList.remove("active");
+
+  document
+    .getElementById("ladiesBtn")
+    .classList.remove("active");
+
+  if (gender === "mens") {
+    document
+      .getElementById("mensBtn")
+      .classList.add("active");
+  } else {
+    document
+      .getElementById("ladiesBtn")
+      .classList.add("active");
+  }
+}
 let selectedGender = "mens";
 function previewImage(event) {
   const file =
