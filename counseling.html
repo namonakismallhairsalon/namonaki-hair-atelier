@@ -276,26 +276,26 @@ function analyze() {
     ];
 
     const styles = [
-  "ナチュラルマッシュ",
-  "センターパート",
-  "ツーブロック",
-  "ゆるパーマ",
-  "アップバング"
-];
+      "ナチュラルマッシュ",
+      "センターパート",
+      "ツーブロック",
+      "ゆるパーマ",
+      "アップバング"
+    ];
 
-const vibes = [
-  "柔らかい雰囲気",
-  "大人っぽい印象",
-  "ナチュラルな魅力",
-  "爽やかで清潔感がある"
-];
+    const vibes = [
+      "柔らかい雰囲気",
+      "大人っぽい印象",
+      "ナチュラルな魅力",
+      "爽やかで清潔感がある"
+    ];
 
-const advice = [
-  "トップに少し動きを出すと似合わせやすいです。",
-  "顔周りに軽さを作るとバランスが良く見えます。",
-  "束感を出すことで立体感がアップします。",
-  "重さを残しつつ毛流れを作ると相性◎"
-];
+    const advice = [
+      "トップに少し動きを出すと似合わせやすいです。",
+      "顔周りに軽さを作るとバランスが良く見えます。",
+      "束感を出すことで立体感がアップします。",
+      "重さを残しつつ毛流れを作ると相性◎"
+    ];
 
     const face =
       faceTypes[
@@ -313,75 +313,66 @@ const advice = [
       .slice(0, 3);
 
     const vibe =
-  vibes[
-    Math.floor(
-      Math.random()
-      * vibes.length
-    )
-  ];
+      vibes[
+        Math.floor(
+          Math.random()
+          * vibes.length
+        )
+      ];
 
-const tip =
-  advice[
-    Math.floor(
-      Math.random()
-      * advice.length
-    )
-  ];
+    const tip =
+      advice[
+        Math.floor(
+          Math.random()
+          * advice.length
+        )
+      ];
 
-const vibe =
-  vibes[
-    Math.floor(
-      Math.random()
-      * vibes.length
-    )
-  ];
+    result.innerHTML = `
+      <div class="result-card">
 
-const tip =
-  advice[
-    Math.floor(
-      Math.random()
-      * advice.length
-    )
-  ];
+        <h2>
+          ✨ AI診断結果
+        </h2>
 
-result.innerHTML = `
-  <div class="result-card">
+        <p>
+          <b>顔タイプ:</b>
+          ${face}
+        </p>
 
-    <h2>
-      ✨ AI診断結果
-    </h2>
+        <p>
+          <b>雰囲気分析:</b>
+          ${vibe}
+        </p>
 
-    <p>
-      <b>顔タイプ:</b>
-      ${face}
-    </p>
+        <p>
+          <b>似合う理由:</b><br>
+          顔型や雰囲気に合わせて
+          バランス良く見える
+          スタイルを選びました。
+        </p>
 
-    <p>
-      <b>雰囲気分析:</b>
-      ${vibe}
-    </p>
+        <p>
+          <b>おすすめスタイル</b>
+        </p>
 
-    <p>
-      <b>似合う理由:</b><br>
-      顔型や雰囲気に合わせて
-      バランス良く見える
-      スタイルを選びました。
-    </p>
+        <ul>
+          ${picks.map(style =>
+            `<li>✂ ${style}</li>`
+          ).join("")}
+        </ul>
 
-    <p>
-      <b>おすすめスタイル</b>
-    </p>
+        <p>
+          <b>NAMONAKIアドバイス:</b><br>
+          ${tip}
+        </p>
 
-    <ul>
-      ${picks.map(style =>
-        `<li>✂ ${style}</li>`
-      ).join("")}
-    </ul>
+      </div>
+    `;
 
-    <p>
-      <b>NAMONAKIアドバイス:</b><br>
-      ${tip}
-    </p>
+  }, 2500);
+}
+</script>
 
-  </div>
-`;
+  
+    
