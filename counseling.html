@@ -508,6 +508,7 @@ function previewImage(event) {
   if (file) {
     preview.src =
       URL.createObjectURL(file);
+
     preview.style.display =
       "block";
   }
@@ -521,7 +522,7 @@ function analyze() {
   const result =
     document.getElementById("result");
 
-  // ローディング表示
+  // ローディング
   result.innerHTML = `
     <div style="text-align:center; padding:30px;">
       <div class="loader"></div>
@@ -540,7 +541,6 @@ function analyze() {
         <h2>✨ AI診断結果</h2>
 
         <div class="score-box">
-
           <div class="score-title">
             NAMONAKI AI SCORE
           </div>
@@ -552,7 +552,6 @@ function analyze() {
           <div class="score-match">
             MATCH
           </div>
-
         </div>
 
         <p>おすすめスタイル</p>
@@ -626,23 +625,16 @@ function saveResult() {
     scale: 2
   }).then(canvas => {
 
-    canvas.toBlob(blob => {
+    const a =
+      document.createElement("a");
 
-      const url =
-        URL.createObjectURL(blob);
+    a.href =
+      canvas.toDataURL("image/png");
 
-      const a =
-        document.createElement("a");
+    a.download =
+      "namonaki-result.png";
 
-      a.href = url;
-      a.download =
-        "namonaki-result.png";
-
-      a.click();
-
-      URL.revokeObjectURL(url);
-
-    });
+    a.click();
 
   });
 }
@@ -655,13 +647,8 @@ function shareLine() {
   const text =
     "✨ namonaki AI診断で似合う髪型が出たよ！";
 
-  const url =
-    encodeURIComponent(
-      location.href
-    );
-
   const shareUrl =
-`https://social-plugins.line.me/lineit/share?url=${url}&text=${encodeURIComponent(text)}`;
+`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(text)}`;
 
   window.open(
     shareUrl,
@@ -670,7 +657,7 @@ function shareLine() {
 }
 
 /* =========================
-   ストーリー用保存
+   ストーリー保存
 ========================= */
 function saveStory() {
 
@@ -698,7 +685,9 @@ function saveStory() {
       storyCanvas.getContext("2d");
 
     // 背景
-    ctx.fillStyle = "#f4f1eb";
+    ctx.fillStyle =
+      "#f4f1eb";
+
     ctx.fillRect(
       0,
       0,
@@ -706,41 +695,46 @@ function saveStory() {
       1920
     );
 
-    // カード中央配置（切れないサイズ）
-// ストーリー枠に収まるよう自動縮小
-const maxWidth = 820;
-const maxHeight = 1450;
+    // サイズ自動調整
+    const maxWidth = 820;
+    const maxHeight = 1450;
 
-let width = maxWidth;
-let height =
-  canvas.height *
-  (width / canvas.width);
+    let width = maxWidth;
 
-// 高さ超えたら縮小
-if (height > maxHeight) {
-  height = maxHeight;
-  width =
-    canvas.width *
-    (height / canvas.height);
-}
+    let height =
+      canvas.height *
+      (width / canvas.width);
 
-// 中央配置
-const x =
-  (1080 - width) / 2;
+    if (
+      height > maxHeight
+    ) {
+      height =
+        maxHeight;
 
-const y =
-  (1920 - height) / 2;
+      width =
+        canvas.width *
+        (height /
+        canvas.height);
+    }
 
-ctx.drawImage(
-  canvas,
-  x,
-  y,
-  width,
-  height
-);
+    const x =
+      (1080 - width) / 2;
+
+    const y =
+      (1920 - height) / 2;
+
+    ctx.drawImage(
+      canvas,
+      x,
+      y,
+      width,
+      height
+    );
 
     // ロゴ
-    ctx.fillStyle = "#222";
+    ctx.fillStyle =
+      "#222";
+
     ctx.font =
       "bold 42px sans-serif";
 
@@ -753,228 +747,20 @@ ctx.drawImage(
       140
     );
 
-    storyCanvas.toBlob(blob => {
-
-      const url =
-        URL.createObjectURL(blob);
-
-      const a =
-        document.createElement("a");
-
-      a.href = url;
-      a.download =
-        "namonaki-story.png";
-
-      a.click();
-
-      URL.revokeObjectURL(url);
-
-    }, "image/png");
-
-  });
-}
-</script>
-
-        <div style="
-          background:black;
-          color:white;
-          padding:18px;
-          border-radius:18px;
-          margin-top:20px;
-        ">
-          NAMONAKI美容師コメント
-          <br><br>
-          あなたにとても似合うバランスです。
-        </div>
-
-        <button
-          class="save-btn"
-          onclick="saveResult()"
-        >
-          診断結果を保存
-        </button>
-
-        <button
-          class="save-btn"
-          onclick="shareLine()"
-        >
-          LINEで共有
-        </button>
-
-        <button
-          class="save-btn"
-          onclick="saveStory()"
-        >
-          ストーリー用で保存
-        </button>
-
-      </div>
-    `;
-
-  }, 1500);
-}
-
-/* =========================
-   診断結果保存
-========================= */
-function saveResult() {
-
-  const target =
-    document.querySelector(
-      ".result-card"
-    );
-
-  if (!target) return;
-
-  html2canvas(target, {
-    useCORS: true,
-    scale: 2
-  }).then(canvas => {
-
-    canvas.toBlob(blob => {
-
-      const url =
-        URL.createObjectURL(blob);
-
-      const a =
-        document.createElement("a");
-
-      a.href = url;
-      a.download =
-        "namonaki-result.png";
-
-      a.click();
-
-      URL.revokeObjectURL(url);
-
-    });
-
-  });
-}
-
-/* =========================
-   LINE共有
-========================= */
-function shareLine() {
-
-  const text =
-    "✨ namonaki AI診断で似合う髪型が出たよ！";
-
-  const url =
-    encodeURIComponent(
-      location.href
-    );
-
-  const shareUrl =
-`https://social-plugins.line.me/lineit/share?url=${url}&text=${encodeURIComponent(text)}`;
-
-  window.open(
-    shareUrl,
-    "_blank"
-  );
-}
-
-/* =========================
-   ストーリー用保存
-========================= */
-function saveStory() {
-
-  const target =
-    document.querySelector(
-      ".result-card"
-    );
-
-  if (!target) return;
-
-  html2canvas(target, {
-    useCORS: true,
-    scale: 2
-  }).then(canvas => {
-
-    const storyCanvas =
+    const a =
       document.createElement(
-        "canvas"
+        "a"
       );
 
-    storyCanvas.width = 1080;
-    storyCanvas.height = 1920;
+    a.href =
+      storyCanvas.toDataURL(
+        "image/png"
+      );
 
-    const ctx =
-      storyCanvas.getContext("2d");
+    a.download =
+      "namonaki-story.png";
 
-    // 背景
-    ctx.fillStyle = "#f4f1eb";
-    ctx.fillRect(
-      0,
-      0,
-      1080,
-      1920
-    );
-
-    // カード中央配置（切れないサイズ）
-// ストーリー枠に収まるよう自動縮小
-const maxWidth = 820;
-const maxHeight = 1450;
-
-let width = maxWidth;
-let height =
-  canvas.height *
-  (width / canvas.width);
-
-// 高さ超えたら縮小
-if (height > maxHeight) {
-  height = maxHeight;
-  width =
-    canvas.width *
-    (height / canvas.height);
-}
-
-// 中央配置
-const x =
-  (1080 - width) / 2;
-
-const y =
-  (1920 - height) / 2;
-
-ctx.drawImage(
-  canvas,
-  x,
-  y,
-  width,
-  height
-);
-
-    // ロゴ
-    ctx.fillStyle = "#222";
-    ctx.font =
-      "bold 42px sans-serif";
-
-    ctx.textAlign =
-      "center";
-
-    ctx.fillText(
-      "NAMONAKI HAIR ATELIER",
-      540,
-      140
-    );
-
-    storyCanvas.toBlob(blob => {
-
-      const url =
-        URL.createObjectURL(blob);
-
-      const a =
-        document.createElement("a");
-
-      a.href = url;
-      a.download =
-        "namonaki-story.png";
-
-      a.click();
-
-      URL.revokeObjectURL(url);
-
-    }, "image/png");
+    a.click();
 
   });
 }
