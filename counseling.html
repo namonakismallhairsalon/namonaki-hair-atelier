@@ -235,25 +235,17 @@ function previewImage(event) {
    AI診断
 ========================= */
 function analyze() {
+
   const result =
     document.getElementById("result");
 
+  // ローディング表示
   result.innerHTML = `
-    <div class="score-box">
-
-  <div class="score-title">
-    NAMONAKI AI SCORE
-  </div>
-
-  <div class="score-number">
-    ${score}%
-  </div>
-
-  <div class="score-match">
-    MATCH
-  </div>
-
-</div>
+    <div style="text-align:center; padding:30px;">
+      <div class="loader"></div>
+      <p>AI分析中...</p>
+    </div>
+  `;
 
   setTimeout(() => {
 
@@ -265,15 +257,20 @@ function analyze() {
 
         <h2>✨ AI診断結果</h2>
 
-        <div style="text-align:center;">
-          <div>AI SCORE</div>
+        <div class="score-box">
 
-          <div style="
-            font-size:40px;
-            font-weight:bold;
-          ">
+          <div class="score-title">
+            NAMONAKI AI SCORE
+          </div>
+
+          <div class="score-number">
             ${score}%
           </div>
+
+          <div class="score-match">
+            MATCH
+          </div>
+
         </div>
 
         <p>おすすめスタイル</p>
