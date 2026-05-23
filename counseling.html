@@ -277,6 +277,23 @@ onclick="history.back()"
 
 </div>
 
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<button onclick="saveResult()">保存する</button>
+
+<script>
+function saveResult() {
+  const target = document.querySelector(".result-box");
+
+  html2canvas(target).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "namonaki-result.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+</script>
+
 <script>
 function setGender(gender) {
   selectedGender = gender;
