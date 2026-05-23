@@ -272,6 +272,96 @@ function saveResult() {
    LINE共有
 ========================= */
 function shareLine() {
+/* =========================
+   ストーリー保存
+========================= */
+function saveStory() {
+  const target = document.querySelector(".result-card");
+
+  if (!target) return;
+
+  const images = target.querySelectorAll("img");
+
+  const loadImages = Array.from(images).map(img => {
+    if (img.complete) return Promise.resolve();
+
+    return new Promise(resolve => {
+      img.onload = resolve;
+      img.onerror = resolve;
+    });
+  });
+
+  Promise.all(loadImages).then(() => {
+
+    html2canvas(target, {
+      useCORS: true,
+      scale: 2,
+      backgroundColor: "#f4f1eb"
+    }).then(canvas => {
+
+      const storyCanvas =
+        document.createElement("canvas");
+
+      storyCanvas.width = 1080;
+      storyCanvas.height = 1920;
+
+      const ctx =
+        storyCanvas.getContext("2d");
+
+      // 背景
+      ctx.fillStyle = "#f4f1eb";
+      ctx.fillRect(0,0,1080,1920);
+
+      // 中央配置
+      const ratio =
+        canvas.width / canvas.height;
+
+      const width = 900;
+      const height = width / ratio;
+
+      ctx.drawImage(
+        canvas,
+        90,
+        250,
+        width,
+        height
+      );
+
+      // ロゴ
+      ctx.font =
+        "bold 42px sans-serif";
+      ctx.fillStyle = "#222";
+      ctx.textAlign = "center";
+
+      ctx.fillText(
+        "NAMONAKI HAIR ATELIER",
+        540,
+        120
+      );
+
+      // 保存
+      storyCanvas.toBlob(blob => {
+
+        const url =
+          URL.createObjectURL(blob);
+
+        const a =
+          document.createElement("a");
+
+        a.href = url;
+        a.download =
+          "namonaki-story.png";
+
+        a.click();
+
+        URL.revokeObjectURL(url);
+
+      }, "image/png");
+
+    });
+
+  });
+}
   const text = "✨ namonaki AI診断で似合う髪型が出たよ！";
   const url = encodeURIComponent(location.href);
 
