@@ -239,11 +239,21 @@ function analyze() {
     document.getElementById("result");
 
   result.innerHTML = `
-    <div style="text-align:center;">
-      <div class="loader"></div>
-      <h3>AI分析中...</h3>
-    </div>
-  `;
+    <div class="score-box">
+
+  <div class="score-title">
+    NAMONAKI AI SCORE
+  </div>
+
+  <div class="score-number">
+    ${score}%
+  </div>
+
+  <div class="score-match">
+    MATCH
+  </div>
+
+</div>
 
   setTimeout(() => {
 
