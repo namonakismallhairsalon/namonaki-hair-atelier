@@ -231,7 +231,10 @@ function analyze() {
 function saveResult() {
   const target = document.querySelector(".result-card");
 
-  html2canvas(target).then(canvas => {
+  html2canvas(target, {
+    useCORS: true,
+    allowTaint: false
+  }).then(canvas => {
     const link = document.createElement("a");
     link.download = "namonaki-result.png";
     link.href = canvas.toDataURL("image/png");
