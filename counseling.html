@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,22 +8,12 @@
 <title>namonaki AI Counseling</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-.upload-box h3 {
-  font-size: 16px;
-  white-space: nowrap;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background:
-    linear-gradient(135deg,#f4f1eb,#e9e3d9);
-  font-family:
-    "Helvetica Neue",
-    sans-serif;
+  background: linear-gradient(135deg,#f4f1eb,#e9e3d9);
+  font-family: "Helvetica Neue", sans-serif;
   padding: 20px;
 }
 
@@ -32,10 +24,7 @@ body {
   backdrop-filter: blur(14px);
   border-radius: 34px;
   padding: 30px;
-  box-shadow:
-    0 10px 40px rgba(0,0,0,0.08);
-  border:
-    1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
 }
 
 .logo {
@@ -48,18 +37,14 @@ body {
 
 h1 {
   text-align: center;
-  margin-bottom: 10px;
   font-size: 24px;
   font-weight: 300;
-  letter-spacing: 4px;
 }
 
 .sub {
   text-align: center;
   color: #8c8379;
-  margin-bottom: 30px;
-  font-size: 15px;
-  line-height: 1.7;
+  margin-bottom: 20px;
 }
 
 .upload-box {
@@ -67,35 +52,16 @@ h1 {
   border-radius: 28px;
   padding: 28px;
   text-align: center;
-  background:
-    linear-gradient(
-      to bottom,
-      #faf8f5,
-      #f1ece5
-    );
+  background: linear-gradient(to bottom,#faf8f5,#f1ece5);
 }
 
 .file-btn {
-  display: inline-block;
-  background:
-    linear-gradient(
-      135deg,
-      #1f1f1f,
-      #444
-    );
+  background: linear-gradient(135deg,#1f1f1f,#444);
   color: white;
   padding: 12px 20px;
   border-radius: 14px;
+  display: inline-block;
   cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.file-status {
-  display: block;
-  margin-top: 10px;
-  font-size: 12px;
-  color: #777;
 }
 
 #preview {
@@ -116,12 +82,7 @@ button {
 
 .diagnose-btn {
   margin-top: 20px;
-  background:
-    linear-gradient(
-      135deg,
-      #1f1f1f,
-      #444
-    );
+  background: linear-gradient(135deg,#1f1f1f,#444);
   color: white;
   font-weight: bold;
 }
@@ -142,53 +103,20 @@ button {
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 .result-card {
-  margin-top: 25px;
-  background:
-    linear-gradient(
-      to bottom,
-      #ffffff,
-      #f7f4ef
-    );
+  margin-top: 20px;
+  background: linear-gradient(to bottom,#fff,#f7f4ef);
   border-radius: 28px;
   padding: 24px;
-  box-shadow:
-    0 6px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
 }
 
-.result-card li {
-  margin-bottom: 8px;
-}
-
-.gender-select {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.gender-btn {
-  flex: 1;
-  background: #ece7df;
-  border: none;
-  border-radius: 14px;
-  padding: 12px;
-  font-size: 14px;
-}
-
-.gender-btn.active {
-  background: #1f1f1f;
-  color: white;
-}
 .style-grid {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 14px;
-  margin-top: 10px;
 }
 
 .style-card img {
@@ -199,7 +127,14 @@ button {
 .style-card p {
   text-align: center;
   margin-top: 8px;
-  font-size: 14px;
+}
+
+.save-btn {
+  background: black;
+  color: white;
+  border-radius: 16px;
+  padding: 14px;
+  margin-top: 15px;
 }
 </style>
 </head>
@@ -208,82 +143,93 @@ button {
 
 <div class="container">
 
-<div class="logo">
-NAMONAKI HAIR ATELIER
-</div>
-
+<div class="logo">NAMONAKI HAIR ATELIER</div>
 <h1>AIカウンセリング</h1>
-
-<p class="sub">
-あなたに似合う髪型を診断します
-</p>
+<p class="sub">あなたに似合う髪型を診断します</p>
 
 <div class="upload-box">
-<div class="gender-select">
-  <button
-    class="gender-btn active"
-    id="mensBtn"
-    onclick="setGender('mens')"
-  >
-    メンズ
-  </button>
-
-  <button
-    class="gender-btn"
-    id="ladiesBtn"
-    onclick="setGender('ladies')"
-  >
-    レディース
-  </button>
-</div>
-<h3>顔写真をアップロード</h3>
-
-<label class="file-btn">
-  ファイルを選択
-  <input
-    type="file"
-    accept="image/*"
-    onchange="previewImage(event)"
-    hidden
-  >
-</label>
-
-<span
-id="fileName"
-class="file-status"
->
-写真を選択してください
-</span>
-
+  <label class="file-btn">
+    ファイルを選択
+    <input type="file" accept="image/*" onchange="previewImage(event)" hidden>
+  </label>
 </div>
 
 <img id="preview">
 
-<button
-class="diagnose-btn"
-onclick="analyze()"
->
+<button class="diagnose-btn" onclick="analyze()">
 AIで似合う髪型を見る
 </button>
 
 <div id="result"></div>
 
-<button
-class="back-btn"
-onclick="history.back()"
->
-戻る
-</button>
+<button class="back-btn" onclick="history.back()">戻る</button>
 
 </div>
 
+<!-- html2canvas -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
-<button onclick="saveResult()">保存する</button>
-
 <script>
+function previewImage(event) {
+  const file = event.target.files[0];
+  const preview = document.getElementById("preview");
+
+  if (file) {
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+  }
+}
+
+function analyze() {
+  const result = document.getElementById("result");
+
+  result.innerHTML = `
+    <div style="text-align:center;">
+      <div class="loader"></div>
+      <h3>AI分析中...</h3>
+    </div>
+  `;
+
+  setTimeout(() => {
+
+    const score = Math.floor(Math.random()*10)+90;
+
+    result.innerHTML = `
+      <div class="result-card" id="captureArea">
+
+        <h2>✨ AI診断結果</h2>
+
+        <div style="text-align:center;">
+          <div>AI SCORE</div>
+          <div style="font-size:40px;font-weight:bold;">${score}%</div>
+        </div>
+
+        <p>おすすめスタイル</p>
+
+        <div class="style-grid">
+          <div class="style-card">
+            <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=500">
+            <p>ナチュラルマッシュ</p>
+          </div>
+        </div>
+
+        <div style="background:black;color:white;padding:18px;border-radius:18px;margin-top:20px;">
+          NAMONAKI美容師コメント<br><br>
+          あなたにとても似合うバランスです。
+          
+          <button class="save-btn" onclick="saveResult()">
+            診断結果を保存
+          </button>
+        </div>
+
+      </div>
+    `;
+
+  }, 2000);
+}
+
 function saveResult() {
-  const target = document.querySelector(".result-box");
+  const target = document.querySelector(".result-card");
 
   html2canvas(target).then(canvas => {
     const link = document.createElement("a");
@@ -294,405 +240,5 @@ function saveResult() {
 }
 </script>
 
-<script>
-function setGender(gender) {
-  selectedGender = gender;
-
-  document
-    .getElementById("mensBtn")
-    .classList.remove("active");
-
-  document
-    .getElementById("ladiesBtn")
-    .classList.remove("active");
-
-  if (gender === "mens") {
-    document
-      .getElementById("mensBtn")
-      .classList.add("active");
-  } else {
-    document
-      .getElementById("ladiesBtn")
-      .classList.add("active");
-  }
-}
-let selectedGender = "mens";
-function previewImage(event) {
-  const file =
-    event.target.files[0];
-
-  const preview =
-    document.getElementById(
-      "preview"
-    );
-
-  const fileName =
-    document.getElementById(
-      "fileName"
-    );
-
-  if (file) {
-    preview.src =
-      URL.createObjectURL(file);
-
-    preview.style.display =
-      "block";
-
-    fileName.textContent =
-      file.name;
-  }
-}
-
-function analyze() {
-  const result =
-    document.getElementById(
-      "result"
-    );
-
-  result.innerHTML = `
-  <div style="text-align:center;">
-    <div class="loader"></div>
-
-    <h3>AI分析中...</h3>
-
-    <p id="loadingText">
-      顔バランスを分析中...
-    </p>
-  </div>
-`;
-
-const loadingMessages = [
-  "顔バランスを分析中...",
-  "骨格を分析中...",
-  "雰囲気データを解析中...",
-  "似合う髪型を提案中..."
-];
-
-let loadingIndex = 0;
-
-const loadingAnimation =
-setInterval(() => {
-
-  loadingIndex++;
-
-  if (
-    loadingIndex <
-    loadingMessages.length
-  ) {
-    document.getElementById(
-      "loadingText"
-    ).textContent =
-      loadingMessages[
-        loadingIndex
-      ];
-  }
-
-}, 600);
-
-  setTimeout(() => {
-
-clearInterval(
-  loadingAnimation
-);
-
-    const faceTypes = [
-      "丸顔タイプ",
-      "面長タイプ",
-      "ベース顔タイプ",
-      "卵型タイプ"
-    ];
-
-    const styles =
-  selectedGender === "mens"
-  ? [
-      "ナチュラルマッシュ",
-      "センターパート",
-      "ツーブロック",
-      "ゆるパーマ",
-      "アップバング"
-    ]
-  : [
-      "韓国風レイヤー",
-      "くびれミディ",
-      "ナチュラルボブ",
-      "シースルーバング",
-      "柔らかレイヤー"
-    ];
-
-const hairstyleImages = {
-  "ナチュラルマッシュ":
-    "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=500",
-
-  "センターパート":
-    "https://images.unsplash.com/photo-1500648767791-00dcc994a43?w=500",
-
-  "ツーブロック":
-    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500",
-
-  "ゆるパーマ":
-    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500",
-
-  "アップバング":
-    "https://images.unsplash.com/photo-1504593811423-6dd665756598?w=500",
-
-  "韓国風レイヤー":
-    "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=500",
-
-  "くびれミディ":
-    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500",
-
-  "ナチュラルボブ":
-    "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500",
-
-  "シースルーバング":
-    "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500",
-
-  "柔らかレイヤー":
-    "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500"
-};
-
-    const vibes = [
-      "柔らかい雰囲気",
-      "大人っぽい印象",
-      "ナチュラルな魅力",
-      "爽やかで清潔感がある"
-    ];
-
-    const advice = [
-      "トップに少し動きを出すと似合わせやすいです。",
-      "顔周りに軽さを作るとバランスが良く見えます。",
-      "束感を出すことで立体感がアップします。",
-      "重さを残しつつ毛流れを作ると相性◎"
-    ];
-
-    const face =
-      faceTypes[
-        Math.floor(
-          Math.random()
-          * faceTypes.length
-        )
-      ];
-
-let boneAnalysis = "";
-let hairType = "";
-let avoidStyle = "";
-let aiReason = "";
-let proComment = "";
-
-if (face === "丸顔タイプ") {
-  boneAnalysis =
-    "横幅バランスが柔らかめ。トップに高さを出すと小顔効果◎";
-
-  hairType =
-    "柔らかめ〜普通毛向き。束感スタイルと相性良し。";
-
-  avoidStyle =
-    "重すぎる前髪や横に広がるスタイル";
-
-  aiReason =
-    "縦ラインを意識することで輪郭バランスが整います。";
-
-  proComment =
-    "顔まわりに動きを作ると、柔らかい魅力がさらに引き立ちます。";
-}
-
-else if (face === "面長タイプ") {
-  boneAnalysis =
-    "縦ラインが強め。横のボリュームを足すとバランス◎";
-
-  hairType =
-    "ナチュラル質感が似合いやすい傾向。";
-
-  avoidStyle =
-    "トップを高くしすぎるスタイル";
-
-  aiReason =
-    "横のシルエットを作ることで優しい印象になります。";
-
-  proComment =
-    "前髪や顔まわりで抜け感を作るのがおすすめ。";
-}
-
-else if (face === "ベース顔タイプ") {
-  boneAnalysis =
-    "フェイスラインがしっかり。柔らかい動きが相性◎";
-
-  hairType =
-    "レイヤー系や毛流れ系がハマりやすい。";
-
-  avoidStyle =
-    "輪郭を強調する重ためライン";
-
-  aiReason =
-    "丸みを作ることで全体バランスが整います。";
-
-  proComment =
-    "毛先に軽さを出すと一気に垢抜けます。";
-}
-
-else {
-  boneAnalysis =
-    "バランス型。幅広いデザインが似合います。";
-
-  hairType =
-    "比較的どんな質感にも対応可能。";
-
-  avoidStyle =
-    "極端な重軽バランス";
-
-  aiReason =
-    "全体バランスが良いため、デザイン幅が広いです。";
-
-  proComment =
-    "トレンドヘアとの相性がかなり良いタイプ。";
-}
-
-    const picks =
-      [...styles]
-      .sort(() =>
-        Math.random() - 0.5
-      )
-      .slice(0, 3);
-
-    const vibe =
-      vibes[
-        Math.floor(
-          Math.random()
-          * vibes.length
-        )
-      ];
-
-    const tip =
-      advice[
-        Math.floor(
-          Math.random()
-          * advice.length
-        )
-      ];
-
-const score =
-  Math.floor(
-    Math.random() * 13
-  ) + 86;
-
-   result.innerHTML = `
-  <div class="result-card">
-
-    <h2>✨ AI診断結果</h2>
-
-    <div style="
-      text-align:center;
-      margin-bottom:20px;
-    ">
-      <div style="
-        font-size:12px;
-        letter-spacing:2px;
-        color:#888;
-      ">
-        NAMONAKI AI SCORE
-      </div>
-
-      <div style="
-        font-size:40px;
-        font-weight:bold;
-      ">
-        ${score}%
-      </div>
-
-      <div style="
-        color:#777;
-        font-size:13px;
-      ">
-        MATCH
-      </div>
-    </div>
-
-    <div style="
-      background:#f8f8f8;
-      border-radius:18px;
-      padding:16px;
-      margin-bottom:15px;
-      text-align:left;
-    ">
-      <p><b>顔タイプ</b><br>${face}</p>
-
-      <p><b>雰囲気分析</b><br>${vibe}</p>
-
-            <p>
-  <b>骨格分析</b><br>
-  ${boneAnalysis}
-</p>
-
-      <p>
-  <b>髪質予測</b><br>
-  ${hairType}
-</p>
-
-      <p>
-  <b>似合う理由</b><br>
-  ${aiReason}
-</p>
-
-      <p>
-  <b>避けたいスタイル</b><br>
-  ${avoidStyle}
-</p>
-    </div>
-
-    <p><b>おすすめスタイル</b></p>
-
-    <div class="style-grid">
-      ${picks.map(style => `
-        <div class="style-card">
-          <img
-            src="${hairstyleImages[style]}"
-            alt="${style}"
-          >
-          <p>✂ ${style}</p>
-        </div>
-      `).join("")}
-    </div>
-
-    <div style="
-      background:black;
-      color:white;
-      padding:18px;
-      border-radius:18px;
-      margin-top:20px;
-    ">
-      <b>NAMONAKI美容師コメント</b><br><br>
-${tip}<br><br>
-${proComment}
-<div style="margin-top:20px;">
-  <button
-    onclick="saveResult()"
-    style="
-      background:black;
-      color:white;
-      border:none;
-      border-radius:16px;
-      padding:14px;
-      width:100%;
-      font-size:16px;
-      font-weight:bold;
-    "
-  >
-    診断結果を保存
-  </button>
-</div>
-    </div>
-
-  </div>
-`;
-
-  }, 2500);
-}
-function saveResult() {
-  alert(
-    "スクリーンショットで保存してください📸"
-  );
-}
-</script>
-
-  
-    
+</body>
+</html>
