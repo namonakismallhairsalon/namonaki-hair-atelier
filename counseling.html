@@ -300,11 +300,25 @@ function saveResult() {
 /* =========================
    LINE共有
 ========================= */
-function shareLine() {
 /* =========================
-   ストーリー保存
+   LINE共有
 ========================= */
+function shareLine() {
+  const text =
+    "✨ namonaki AI診断で似合う髪型が出たよ！";
+
+  const url =
+    encodeURIComponent(location.href);
+
+  const shareUrl =
+    `https://social-plugins.line.me/lineit/share?url=${url}&text=${encodeURIComponent(text)}`;
+
+  window.open(shareUrl, "_blank");
+}
+
 function saveStory() {
+
+}
   const target = document.querySelector(".result-card");
 
   if (!target) return;
