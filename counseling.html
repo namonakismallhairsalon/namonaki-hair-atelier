@@ -179,11 +179,14 @@ AIで似合う髪型を見る
 <script>
 function previewImage(event) {
   const file = event.target.files[0];
-  const preview = document.getElementById("preview");
+  const preview =
+    document.getElementById("preview");
 
   if (file) {
-    preview.src = URL.createObjectURL(file);
-    preview.style.display = "block";
+    preview.src =
+      URL.createObjectURL(file);
+    preview.style.display =
+      "block";
   }
 }
 
@@ -191,7 +194,8 @@ function previewImage(event) {
    AI診断
 ========================= */
 function analyze() {
-  const result = document.getElementById("result");
+  const result =
+    document.getElementById("result");
 
   result.innerHTML = `
     <div style="text-align:center;">
@@ -202,7 +206,8 @@ function analyze() {
 
   setTimeout(() => {
 
-    const score = Math.floor(Math.random()*10)+90;
+    const score =
+      Math.floor(Math.random()*10)+90;
 
     result.innerHTML = `
       <div class="result-card">
@@ -211,47 +216,60 @@ function analyze() {
 
         <div style="text-align:center;">
           <div>AI SCORE</div>
-          <div style="font-size:40px;font-weight:bold;">${score}%</div>
+
+          <div style="
+            font-size:40px;
+            font-weight:bold;
+          ">
+            ${score}%
+          </div>
         </div>
 
         <p>おすすめスタイル</p>
 
         <div class="style-grid">
           <div class="style-card">
-            <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=500">
+            <img
+              src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=500"
+              crossOrigin="anonymous"
+            >
             <p>ナチュラルマッシュ</p>
           </div>
         </div>
 
-        <div style="background:black;color:white;padding:18px;border-radius:18px;margin-top:20px;">
-          NAMONAKI美容師コメント<br><br>
+        <div style="
+          background:black;
+          color:white;
+          padding:18px;
+          border-radius:18px;
+          margin-top:20px;
+        ">
+          NAMONAKI美容師コメント
+          <br><br>
           あなたにとても似合うバランスです。
         </div>
 
-        <button class="save-btn" onclick="saveResult()">
+        <button
+          class="save-btn"
+          onclick="saveResult()"
+        >
           診断結果を保存
         </button>
 
-  <button class="save-btn" onclick="saveResult()">
-  診断結果を保存
-</button>
+        <button
+          class="save-btn"
+          onclick="shareLine()"
+        >
+          LINEで共有
+        </button>
 
-<button
-  class="save-btn"
-  onclick="shareLine()"
-  style="margin-top:10px;"
->
-  LINEで共有
-</button>
+        <button
+          class="save-btn"
+          onclick="saveStory()"
+        >
+          ストーリー用で保存
+        </button>
 
-<button
-  class="save-btn"
-  onclick="saveStory()"
-  style="margin-top:10px;"
->
-  ストーリー用で保存
-</button>
- 
       </div>
     `;
 
@@ -259,158 +277,149 @@ function analyze() {
 }
 
 /* =========================
-   保存（画像化）
+   診断結果保存
 ========================= */
 function saveResult() {
-  const target = document.querySelector(".result-card");
+
+  const target =
+    document.querySelector(
+      ".result-card"
+    );
+
   if (!target) return;
 
-  const images = target.querySelectorAll("img");
+  html2canvas(target, {
+    useCORS: true,
+    scale: 2
+  }).then(canvas => {
 
-  const loadImages = Array.from(images).map(img => {
-    if (img.complete) return Promise.resolve();
-    return new Promise(res => {
-      img.onload = img.onerror = res;
-    });
-  });
+    canvas.toBlob(blob => {
 
-  Promise.all(loadImages).then(() => {
+      const url =
+        URL.createObjectURL(blob);
 
-    html2canvas(target, {
-      useCORS: true,
-      scale: 1
-    }).then(canvas => {
+      const a =
+        document.createElement("a");
 
-      canvas.toBlob(blob => {
-        const url = URL.createObjectURL(blob);
+      a.href = url;
+      a.download =
+        "namonaki-result.png";
 
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "namonaki-result.png";
-        a.click();
+      a.click();
 
-        URL.revokeObjectURL(url);
-      });
+      URL.revokeObjectURL(url);
 
     });
 
   });
 }
 
-/* =========================
-   LINE共有
-========================= */
 /* =========================
    LINE共有
 ========================= */
 function shareLine() {
+
   const text =
     "✨ namonaki AI診断で似合う髪型が出たよ！";
 
   const url =
-    encodeURIComponent(location.href);
+    encodeURIComponent(
+      location.href
+    );
 
   const shareUrl =
-    `https://social-plugins.line.me/lineit/share?url=${url}&text=${encodeURIComponent(text)}`;
+`https://social-plugins.line.me/lineit/share?url=${url}&text=${encodeURIComponent(text)}`;
 
-  window.open(shareUrl, "_blank");
+  window.open(
+    shareUrl,
+    "_blank"
+  );
 }
 
+/* =========================
+   ストーリー用保存
+========================= */
 function saveStory() {
 
-}
-  const target = document.querySelector(".result-card");
+  const target =
+    document.querySelector(
+      ".result-card"
+    );
 
   if (!target) return;
 
-  const images = target.querySelectorAll("img");
+  html2canvas(target, {
+    useCORS: true,
+    scale: 2
+  }).then(canvas => {
 
-  const loadImages = Array.from(images).map(img => {
-    if (img.complete) return Promise.resolve();
-
-    return new Promise(resolve => {
-      img.onload = resolve;
-      img.onerror = resolve;
-    });
-  });
-
-  Promise.all(loadImages).then(() => {
-
-    html2canvas(target, {
-      useCORS: true,
-      scale: 2,
-      backgroundColor: "#f4f1eb"
-    }).then(canvas => {
-
-      const storyCanvas =
-        document.createElement("canvas");
-
-      storyCanvas.width = 1080;
-      storyCanvas.height = 1920;
-
-      const ctx =
-        storyCanvas.getContext("2d");
-
-      // 背景
-      ctx.fillStyle = "#f4f1eb";
-      ctx.fillRect(0,0,1080,1920);
-
-      // 中央配置
-      const ratio =
-        canvas.width / canvas.height;
-
-      const width = 900;
-      const height = width / ratio;
-
-      ctx.drawImage(
-        canvas,
-        90,
-        250,
-        width,
-        height
+    const storyCanvas =
+      document.createElement(
+        "canvas"
       );
 
-      // ロゴ
-      ctx.font =
-        "bold 42px sans-serif";
-      ctx.fillStyle = "#222";
-      ctx.textAlign = "center";
+    storyCanvas.width = 1080;
+    storyCanvas.height = 1920;
 
-      ctx.fillText(
-        "NAMONAKI HAIR ATELIER",
-        540,
-        120
-      );
+    const ctx =
+      storyCanvas.getContext("2d");
 
-      // 保存
-      storyCanvas.toBlob(blob => {
+    // 背景
+    ctx.fillStyle = "#f4f1eb";
+    ctx.fillRect(
+      0,
+      0,
+      1080,
+      1920
+    );
 
-        const url =
-          URL.createObjectURL(blob);
+    // カード中央配置
+    const width = 900;
 
-        const a =
-          document.createElement("a");
+    const height =
+      canvas.height *
+      (width / canvas.width);
 
-        a.href = url;
-        a.download =
-          "namonaki-story.png";
+    ctx.drawImage(
+      canvas,
+      90,
+      250,
+      width,
+      height
+    );
 
-        a.click();
+    // ロゴ
+    ctx.fillStyle = "#222";
+    ctx.font =
+      "bold 42px sans-serif";
 
-        URL.revokeObjectURL(url);
+    ctx.textAlign =
+      "center";
 
-      }, "image/png");
+    ctx.fillText(
+      "NAMONAKI HAIR ATELIER",
+      540,
+      140
+    );
 
-    });
+    storyCanvas.toBlob(blob => {
+
+      const url =
+        URL.createObjectURL(blob);
+
+      const a =
+        document.createElement("a");
+
+      a.href = url;
+      a.download =
+        "namonaki-story.png";
+
+      a.click();
+
+      URL.revokeObjectURL(url);
+
+    }, "image/png");
 
   });
-}
-  const text = "✨ namonaki AI診断で似合う髪型が出たよ！";
-  const url = encodeURIComponent(location.href);
-
-  const shareUrl =
-    `https://social-plugins.line.me/lineit/share?url=${url}&text=${encodeURIComponent(text)}`;
-
-  window.open(shareUrl, "_blank");
 }
 </script>
