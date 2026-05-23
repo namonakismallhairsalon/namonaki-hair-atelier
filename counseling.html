@@ -422,16 +422,34 @@ function saveStory() {
     );
 
     // カード中央配置（切れないサイズ）
-const width = 760;
+// ストーリー枠に収まるよう自動縮小
+const maxWidth = 820;
+const maxHeight = 1450;
 
-const height =
+let width = maxWidth;
+let height =
   canvas.height *
   (width / canvas.width);
 
+// 高さ超えたら縮小
+if (height > maxHeight) {
+  height = maxHeight;
+  width =
+    canvas.width *
+    (height / canvas.height);
+}
+
+// 中央配置
+const x =
+  (1080 - width) / 2;
+
+const y =
+  (1920 - height) / 2;
+
 ctx.drawImage(
   canvas,
-  160,
-  220,
+  x,
+  y,
   width,
   height
 );
