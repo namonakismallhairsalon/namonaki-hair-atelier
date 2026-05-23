@@ -174,11 +174,6 @@ function previewImage(event) {
 function analyze() {
   const result = document.getElementById("result");
 
-/* =========================
-   AI診断
-========================= */
-function analyze() {
-
   result.innerHTML = `
     <div style="text-align:center;">
       <div class="loader"></div>
@@ -191,13 +186,9 @@ function analyze() {
     const score = Math.floor(Math.random()*10)+90;
 
     result.innerHTML = `
-      <div class="result-card" id="captureArea">
+      <div class="result-card">
 
         <h2>✨ AI診断結果</h2>
-
-<button class="save-btn" onclick="shareLine()">
-  LINEで共有する
-</button>
 
         <div style="text-align:center;">
           <div>AI SCORE</div>
@@ -208,10 +199,7 @@ function analyze() {
 
         <div class="style-grid">
           <div class="style-card">
-            <img
-              src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=500"
-              crossOrigin="anonymous"
-            >
+            <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=500">
             <p>ナチュラルマッシュ</p>
           </div>
         </div>
@@ -225,6 +213,10 @@ function analyze() {
           診断結果を保存
         </button>
 
+        <button class="save-btn" onclick="shareLine()" style="margin-top:10px;">
+          LINEで共有
+        </button>
+
       </div>
     `;
 
@@ -232,11 +224,10 @@ function analyze() {
 }
 
 /* =========================
-   保存（安定版）
+   保存（画像化）
 ========================= */
 function saveResult() {
   const target = document.querySelector(".result-card");
-
   if (!target) return;
 
   const images = target.querySelectorAll("img");
@@ -252,7 +243,6 @@ function saveResult() {
 
     html2canvas(target, {
       useCORS: true,
-      allowTaint: false,
       scale: 1
     }).then(canvas => {
 
@@ -265,13 +255,23 @@ function saveResult() {
         a.click();
 
         URL.revokeObjectURL(url);
-      }, "image/png");
+      });
 
     });
 
   });
 }
-</script>
 
-</body>
-</html>
+/* =========================
+   LINE共有
+========================= */
+function shareLine() {
+  const text = "✨ namonaki AI診断で似合う髪型が出たよ！";
+  const url = encodeURIComponent(location.href);
+
+  const shareUrl =
+    `https://social-plugins.line.me/lineit/share?url=${url}&text=${encodeURIComponent(text)}`;
+
+  window.open(shareUrl, "_blank");
+}
+</script>
