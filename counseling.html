@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -56,6 +56,7 @@ h1 {
   padding: 12px 20px;
   border-radius: 14px;
   display: inline-block;
+  cursor: pointer;
 }
 
 #preview {
@@ -71,6 +72,7 @@ button {
   border-radius: 16px;
   padding: 15px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .diagnose-btn {
@@ -166,6 +168,9 @@ function previewImage(event) {
   }
 }
 
+/* =========================
+   AI診断
+========================= */
 function analyze() {
   const result = document.getElementById("result");
 
@@ -214,21 +219,27 @@ function analyze() {
       </div>
     `;
 
-  }, 2000);
-}//
+  }, 1500);
+}
+
+/* =========================
+   保存（安定版）
+========================= */
 function saveResult() {
   const target = document.querySelector(".result-card");
 
+  if (!target) return;
+
   const images = target.querySelectorAll("img");
 
-  const promises = Array.from(images).map(img => {
+  const loadImages = Array.from(images).map(img => {
     if (img.complete) return Promise.resolve();
     return new Promise(res => {
       img.onload = img.onerror = res;
     });
   });
 
-  Promise.all(promises).then(() => {
+  Promise.all(loadImages).then(() => {
 
     html2canvas(target, {
       useCORS: true,
@@ -236,19 +247,15 @@ function saveResult() {
       scale: 1
     }).then(canvas => {
 
-      // ⭐ここが重要（Blob方式）
-      canvas.toBlob(function(blob) {
-
-        const link = document.createElement("a");
+      canvas.toBlob(blob => {
         const url = URL.createObjectURL(blob);
 
-        link.href = url;
-        link.download = "namonaki-result.png";
-        link.click();
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "namonaki-result.png";
+        a.click();
 
-        // メモリ解放（重要）
         URL.revokeObjectURL(url);
-
       }, "image/png");
 
     });
