@@ -421,20 +421,20 @@ function saveStory() {
       1920
     );
 
-    // カード中央配置
-    const width = 900;
+    // カード中央配置（切れないサイズ）
+const width = 760;
 
-    const height =
-      canvas.height *
-      (width / canvas.width);
+const height =
+  canvas.height *
+  (width / canvas.width);
 
-    ctx.drawImage(
-      canvas,
-      90,
-      250,
-      width,
-      height
-    );
+ctx.drawImage(
+  canvas,
+  160,
+  220,
+  width,
+  height
+);
 
     // ロゴ
     ctx.fillStyle = "#222";
