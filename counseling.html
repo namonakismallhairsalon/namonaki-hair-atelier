@@ -205,6 +205,36 @@ button {
 
 <img id="preview">
 
+<div style="
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+">
+
+  <button
+    id="mensBtn"
+    onclick="setGender('mens')"
+    style="
+      background:#222;
+      color:white;
+    "
+  >
+    メンズ
+  </button>
+
+  <button
+    id="ladiesBtn"
+    onclick="setGender('ladies')"
+    style="
+      background:#ddd;
+      color:black;
+    "
+  >
+    レディース
+  </button>
+
+</div>
+
 <button class="diagnose-btn" onclick="analyze()">
 AIで似合う髪型を見る
 </button>
@@ -218,6 +248,52 @@ AIで似合う髪型を見る
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <script>
+let gender = "mens";
+
+function setGender(type) {
+
+  gender = type;
+
+  const mensBtn =
+    document.getElementById(
+      "mensBtn"
+    );
+
+  const ladiesBtn =
+    document.getElementById(
+      "ladiesBtn"
+    );
+
+  if (type === "mens") {
+
+    mensBtn.style.background =
+      "#222";
+
+    mensBtn.style.color =
+      "white";
+
+    ladiesBtn.style.background =
+      "#ddd";
+
+    ladiesBtn.style.color =
+      "black";
+
+  } else {
+
+    ladiesBtn.style.background =
+      "#222";
+
+    ladiesBtn.style.color =
+      "white";
+
+    mensBtn.style.background =
+      "#ddd";
+
+    mensBtn.style.color =
+      "black";
+  }
+}
+
 function previewImage(event) {
   const file = event.target.files[0];
   const preview =
