@@ -635,7 +635,11 @@ function analyze() {
         <div class="style-grid">
           <div class="style-card">
 
-            <img
+            ${
+gender === "mens"
+
+? `
+<img
   src="https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg"
   style="
     width:100%;
@@ -644,8 +648,22 @@ function analyze() {
     max-height:280px;
   "
 >
-            
-            <p>ナチュラルマッシュ</p>
+<p>ナチュラルマッシュ</p>
+`
+
+: `
+<img
+  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
+  style="
+    width:100%;
+    border-radius:18px;
+    object-fit:cover;
+    max-height:280px;
+  "
+>
+<p>レイヤーボブ</p>
+`
+}
 
           </div>
         </div>
