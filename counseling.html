@@ -147,3 +147,71 @@ document.getElementById("fileInput").addEventListener("change", function(e){
   reader.onload = function(event) {
     selectedImage = event.target.result;
   }
+
+  reader.readAsDataURL(file);
+});
+
+function startAI() {
+  document.getElementById("inputBox").style.display = "none";
+  document.getElementById("loader").style.display = "block";
+  document.getElementById("loadingText").innerText = "AI分析中...";
+
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("loadingText").innerText = "";
+
+    showResult();
+  }, 2000);
+}
+
+function showResult() {
+  document.getElementById("result").style.display = "block";
+
+  let hairType = "";
+
+  if (gender === "men") {
+    hairType = "ナチュラルショート / 清潔感アップスタイル";
+  } else {
+    hairType = "ゆるふわレイヤー / 小顔バランススタイル";
+  }
+
+  document.getElementById("hairType").innerText = hairType;
+
+  if (selectedImage) {
+    document.getElementById("preview").src = selectedImage;
+  }
+}
+
+/* ===== 保存機能 ===== */
+
+// LINE保存（簡易：画像＋テキストをまとめてダウンロード）
+function saveLINE() {
+  const text = document.getElementById("hairType").innerText;
+  downloadText("LINE_share.txt", "【namonaki診断】\n" + text);
+}
+
+// ストーリー保存（縦長用テキスト）
+function saveStory() {
+  const text = document.getElementById("hairType").innerText;
+  downloadText("story_share.txt",
+`🌿 namonaki Hair Atelier
+AI診断結果
+
+${text}
+
+#hair #style #namonaki`);
+}
+
+// ダウンロード処理
+function downloadText(filename, text) {
+  const blob = new Blob([text], { type: "text/plain" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
+}
+
+</script>
+
+</body>
+</html>
