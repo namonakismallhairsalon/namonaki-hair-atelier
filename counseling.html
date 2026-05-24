@@ -1,348 +1,149 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>namonaki AI Counseling</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>namonaki Hair Atelier</title>
 
 <style>
-*{
-  box-sizing:border-box;
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  background: linear-gradient(135deg,#f4f1eb,#e9e3d9);
+  color: #333;
+  text-align: center;
 }
 
-body{
-  margin:0;
-  background:linear-gradient(135deg,#f4f1eb,#e9e3d9);
-  font-family:"Helvetica Neue",sans-serif;
-  padding:20px;
+header {
+  padding: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
-.container{
-  max-width:450px;
-  margin:auto;
-  background:rgba(255,255,255,0.88);
-  backdrop-filter:blur(14px);
-  border-radius:34px;
-  padding:30px;
+.container {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
 }
 
-.logo{
-  text-align:center;
-  font-size:12px;
-  letter-spacing:5px;
-  color:#8a7f74;
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-h1{
-  text-align:center;
-  font-size:24px;
-  font-weight:300;
+button {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  margin: 8px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.sub{
-  text-align:center;
-  color:#8c8379;
+.primary {
+  background: #c8b6a6;
+  color: white;
 }
 
-.upload-box{
-  border:1px solid #d8d2ca;
-  border-radius:28px;
-  padding:28px;
-  text-align:center;
-  background:linear-gradient(to bottom,#faf8f5,#f1ece5);
+.gray {
+  background: #ddd;
 }
 
-.file-btn{
-  background:#222;
-  color:white;
-  padding:12px 20px;
-  border-radius:14px;
-  display:inline-block;
-  cursor:pointer;
+input[type=file] {
+  margin: 10px 0;
 }
 
-#preview{
-  width:100%;
-  border-radius:20px;
-  margin-top:20px;
-  display:none;
+#result {
+  display: none;
 }
 
-.gender-wrap{
-  display:flex;
-  gap:10px;
-  margin-top:20px;
+.loader {
+  display: none;
+  margin: 20px auto;
+  border: 5px solid #eee;
+  border-top: 5px solid #c8b6a6;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }
 
-.gender-btn{
-  flex:1;
-  border:none;
-  border-radius:16px;
-  padding:15px;
-  font-size:16px;
-  cursor:pointer;
+@keyframes spin {
+  100% { transform: rotate(360deg); }
 }
 
-.active{
-  background:#222;
-  color:white;
+.result-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 20px;
 }
 
-.inactive{
-  background:#ddd;
-  color:black;
-}
-
-button{
-  width:100%;
-  border:none;
-  border-radius:16px;
-  padding:15px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-.diagnose-btn{
-  margin-top:20px;
-  background:#222;
-  color:white;
-  font-weight:bold;
-}
-
-.back-btn{
-  margin-top:15px;
-  background:#e6e6e6;
-}
-
-.loader{
-  width:60px;
-  height:60px;
-  border:5px solid #ddd;
-  border-top:5px solid black;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-  margin:20px auto;
-}
-
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-.result-card{
-  margin-top:24px;
-  background:linear-gradient(
-    180deg,
-    rgba(255,255,255,0.95),
-    rgba(247,244,239,0.96)
-  );
-  border-radius:34px;
-  padding:28px;
-  box-shadow:0 12px 40px rgba(0,0,0,0.08);
-}
-
-.score-box{
-  text-align:center;
-  margin:25px 0;
-}
-
-.score-title{
-  font-size:12px;
-  letter-spacing:4px;
-  color:#888;
-}
-
-.score-number{
-  font-size:64px;
-  font-weight:bold;
-}
-
-.score-match{
-  color:#777;
-  font-size:13px;
-  letter-spacing:3px;
-}
-
-.style-card img{
-  width:100%;
-  border-radius:18px;
-  max-height:280px;
-  object-fit:cover;
-}
-
-.save-btn{
-  background:linear-gradient(
-    135deg,
-    #1f1f1f,
-    #444
-  );
-  color:white;
-  border-radius:18px;
-  padding:16px;
-  margin-top:14px;
-  font-size:15px;
-  font-weight:bold;
+img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
 }
 </style>
 </head>
 
 <body>
 
+<header>namonaki Hair Atelier</header>
+
 <div class="container">
 
-<div class="logo">
-NAMONAKI HAIR ATELIER
-</div>
+  <!-- INPUT -->
+  <div class="card" id="inputBox">
+    <p>AIカウンセリング</p>
 
-<h1>AIカウンセリング</h1>
+    <input type="file" id="fileInput" accept="image/*"><br>
 
-<p class="sub">
-あなたに似合う髪型を診断します
-</p>
+    <button onclick="setGender('men')" class="gray">メンズ</button>
+    <button onclick="setGender('women')" class="gray">レディース</button>
 
-<div class="upload-box">
-  <label class="file-btn">
-    ファイル選択
-    <input
-      type="file"
-      accept="image/*"
-      hidden
-      onchange="previewImage(event)"
-    >
-  </label>
-</div>
+    <br>
 
-<img id="preview">
+    <button class="primary" onclick="startAI()">AIで似合う髪型を見る</button>
+  </div>
 
-<div class="gender-wrap">
+  <!-- LOADING -->
+  <div class="loader" id="loader"></div>
+  <p id="loadingText"></p>
 
-  <button
-    id="mensBtn"
-    class="gender-btn active"
-    onclick="setGender('mens')"
-  >
-    メンズ
-  </button>
+  <!-- RESULT -->
+  <div id="result" class="result-box">
+    <h2>診断結果</h2>
 
-  <button
-    id="ladiesBtn"
-    class="gender-btn inactive"
-    onclick="setGender('ladies')"
-  >
-    レディース
-  </button>
+    <p id="hairType"></p>
 
-</div>
+    <img id="preview">
 
-<button
-  class="diagnose-btn"
-  onclick="analyze()"
->
-AIで似合う髪型を見る
-</button>
+    <br><br>
 
-<div id="result"></div>
-
-<button
-  class="back-btn"
-  onclick="history.back()"
->
-戻る
-</button>
+    <button class="primary" onclick="saveLINE()">LINEで保存</button>
+    <button class="primary" onclick="saveStory()">ストーリー保存</button>
+    <button class="gray" onclick="location.reload()">戻る</button>
+  </div>
 
 </div>
 
 <script>
-let gender = "mens";
 
-/* 性別切替 */
-function setGender(type){
+let gender = "men";
+let selectedImage = "";
 
-  gender = type;
-
-  const mens =
-    document.getElementById(
-      "mensBtn"
-    );
-
-  const ladies =
-    document.getElementById(
-      "ladiesBtn"
-    );
-
-  if(type === "mens"){
-
-    mens.className =
-      "gender-btn active";
-
-    ladies.className =
-      "gender-btn inactive";
-
-  }else{
-
-    ladies.className =
-      "gender-btn active";
-
-    mens.className =
-      "gender-btn inactive";
-  }
+function setGender(g) {
+  gender = g;
 }
 
-/* 写真プレビュー */
-function previewImage(event){
+document.getElementById("fileInput").addEventListener("change", function(e){
+  const file = e.target.files[0];
+  const reader = new FileReader();
 
-  const file =
-    event.target.files[0];
-
-  const preview =
-    document.getElementById(
-      "preview"
-    );
-
-  if(file){
-
-    preview.src =
-      URL.createObjectURL(file);
-
-    preview.style.display =
-      "block";
+  reader.onload = function(event) {
+    selectedImage = event.target.result;
   }
-}
-
-/* AI診断 */
-function analyze(){
-
-  const result =
-    document.getElementById(
-      "result"
-    );
-
-  result.innerHTML = `
-    <div style="text-align:center;padding:30px;">
-      <div class="loader"></div>
-      <p>AI分析中...</p>
-    </div>
-  `;
-
-  setTimeout(() => {
-
-    const score =
-      Math.floor(Math.random()*10)+90;
-
-    let styleImage = "";
-    let styleName = "";
-
-    if(gender === "mens"){
-
-      styleImage =
-"https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg";
-
-      styleName =
-        "ナチュラルマッシュ";
-
-    }else{
-
-      styleImage =
-"https://images.pexels.com/photos
