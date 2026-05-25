@@ -186,8 +186,33 @@ img {
   </div>
 
   <!-- LOADING -->
-  <div class="loader" id="loader"></div>
-  <p id="loadingText"></p>
+  <div id="loadingScreen" class="loading-screen">
+
+  <div class="scanner-box">
+
+    <div class="scan-line"></div>
+
+    <div class="ai-face">
+      <div class="face-grid"></div>
+    </div>
+
+    <h2>AI ANALYZING</h2>
+
+    <p id="loadingText">
+      Face Balance Scan...
+    </p>
+
+    <div class="progress-bar">
+      <div id="progressFill"></div>
+    </div>
+
+    <div id="percentText">
+      0%
+    </div>
+
+  </div>
+
+</div>
 
   <!-- RESULT -->
 <div id="result" class="result-box">
