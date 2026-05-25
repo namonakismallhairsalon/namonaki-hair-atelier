@@ -753,47 +753,98 @@ function downloadText(filename, text) {
 
 function generateHair() {
 
-  document.getElementById("loader").style.display =
+  document.getElementById(
+    "loadingScreen"
+  ).style.display =
     "block";
 
-  document.getElementById("loadingText").innerText =
-    "似合う髪型を合成中...";
+  document.getElementById(
+    "scanPreview"
+  ).src =
+    selectedImage;
 
-  setTimeout(() => {
+  document.getElementById(
+    "loadingText"
+  ).innerText =
+    "AI Hair Styling...";
 
-    document.getElementById("loader").style.display =
-      "none";
+  document.getElementById(
+    "progressFill"
+  ).style.width =
+    "0%";
 
-    document.getElementById("loadingText").innerText =
-      "";
+  document.getElementById(
+    "percentText"
+  ).innerText =
+    "0%";
+
+  let percent = 0;
+
+  const interval =
+  setInterval(() => {
+
+    percent += 4;
 
     document.getElementById(
-      "hairPreviewTitle"
+      "progressFill"
+    ).style.width =
+      percent + "%";
+
+    document.getElementById(
+      "percentText"
     ).innerText =
-      "✨ AIおすすめスタイルを適用";
+      percent + "%";
 
-    if (gender === "men") {
+    if (percent >= 100) {
 
-      document.getElementById(
-        "hairType"
-      ).innerText =
-      "おすすめ：ナチュラルマッシュ";
-
-    } else {
+      clearInterval(
+        interval
+      );
 
       document.getElementById(
-        "hairType"
+        "loadingText"
       ).innerText =
-      "おすすめ：韓国風レイヤー";
+        "スタイル合成完了";
+
+      setTimeout(() => {
+
+        document.getElementById(
+          "loadingScreen"
+        ).style.display =
+          "none";
+
+        document.getElementById(
+          "hairPreviewTitle"
+        ).innerText =
+          "✨ AIおすすめスタイルを適用";
+
+        if (
+          gender === "men"
+        ) {
+
+          document.getElementById(
+            "hairType"
+          ).innerText =
+          "おすすめ：ナチュラルマッシュ";
+
+        } else {
+
+          document.getElementById(
+            "hairType"
+          ).innerText =
+          "おすすめ：韓国風レイヤー";
+        }
+
+        document.getElementById(
+          "preview"
+        ).scrollIntoView({
+          behavior:"smooth"
+        });
+
+      }, 700);
     }
 
-document.getElementById(
-  "preview"
-).scrollIntoView({
-  behavior: "smooth"
-});
-
-  }, 2000);
+  }, 50);
 }
 
 window.changeStyle =  function(styleName, event){
