@@ -113,6 +113,14 @@ img {
 .style-card:active {
   transform: scale(0.98);
 }
+
+.style-card.selected-style {
+  background: #c8b6a6;
+  color: white;
+  transform: scale(1.02);
+  box-shadow: 0 0 18px rgba(200,182,166,0.6);
+  transition: all 0.25s ease;
+}
 </style>
 </head>
 
@@ -325,7 +333,7 @@ if (gender === "men") {
   </div>
 
   <div class="style-card"
-    onclick="changeStyle('センターパート')">
+    onclick="changeStyle('センターパート', event)">
     ✂ センターパート
   </div>
 
@@ -434,6 +442,15 @@ document.getElementById(
 }
 
 window.changeStyle = function(styleName) {
+
+document.querySelectorAll(".style-card")
+.forEach(card => {
+  card.classList.remove("selected-style");
+});
+
+event.currentTarget.classList.add(
+  "selected-style"
+);
 
   alert(styleName + " を選択");
 
