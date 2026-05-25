@@ -434,28 +434,27 @@ window.changeStyle = function(styleName) {
 
   alert(styleName + " を選択");
 
-  document.getElementById(
-    "hairPreviewTitle"
-  ).innerText =
+  document.getElementById("hairPreviewTitle").innerText =
     "✨ AIおすすめスタイルを適用";
 
-  document.getElementById(
-    "hairType"
-  ).innerText =
+  document.getElementById("hairType").innerText =
     "おすすめ：" + styleName;
 
   setTimeout(() => {
-  document.getElementById("faceType").scrollIntoView({
-  behavior: "smooth",
-  block: "start"
-});
+    document.getElementById("faceType").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
 
-setTimeout(() => {
-  window.scrollBy({
-    top: -60,
-    behavior: "smooth"
-  });
-}, 200);
+    setTimeout(() => {
+      window.scrollBy({
+        top: -60,
+        behavior: "smooth"
+      });
+    }, 200);
+
+  }, 100);
+};
 
 </script>
 
