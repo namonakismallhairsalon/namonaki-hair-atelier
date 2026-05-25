@@ -185,7 +185,37 @@ let gender = "men";
 let selectedImage = "";
 
 function setGender(g) {
+
   gender = g;
+
+  document.getElementById(
+    "menBtn"
+  ).classList.remove(
+    "selected"
+  );
+
+  document.getElementById(
+    "womenBtn"
+  ).classList.remove(
+    "selected"
+  );
+
+  if (g === "men") {
+
+    document.getElementById(
+      "menBtn"
+    ).classList.add(
+      "selected"
+    );
+
+  } else {
+
+    document.getElementById(
+      "womenBtn"
+    ).classList.add(
+      "selected"
+    );
+  }
 }
 
 document.getElementById("fileInput").addEventListener("change", function(e){
