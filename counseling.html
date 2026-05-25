@@ -293,7 +293,19 @@ function startAI() {
 }
 
 function showResult() {
+
+document.getElementById(
+  "result"
+).classList.remove(
+  "fade-in"
+);
   document.getElementById("result").style.display = "block";
+
+document.getElementById(
+  "result"
+).classList.add(
+  "fade-in"
+);
 
   let hairType = "";
   let faceType = "";
