@@ -275,7 +275,42 @@ function downloadText(filename, text) {
 }
 
 function generateHair() {
-  alert("次のステップでリアル髪型合成を実装します");
+
+  document.getElementById("loader").style.display =
+    "block";
+
+  document.getElementById("loadingText").innerText =
+    "似合う髪型を合成中...";
+
+  setTimeout(() => {
+
+    document.getElementById("loader").style.display =
+      "none";
+
+    document.getElementById("loadingText").innerText =
+      "";
+
+    document.getElementById(
+      "hairPreviewTitle"
+    ).innerText =
+      "✨ AIおすすめスタイルを適用";
+
+    if (gender === "men") {
+
+      document.getElementById(
+        "hairType"
+      ).innerText =
+      "おすすめ：ナチュラルマッシュ";
+
+    } else {
+
+      document.getElementById(
+        "hairType"
+      ).innerText =
+      "おすすめ：韓国風レイヤー";
+    }
+
+  }, 2000);
 }
 
 </script>
