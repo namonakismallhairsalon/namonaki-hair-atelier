@@ -423,6 +423,25 @@ document.getElementById(
   }, 2000);
 }
 
+function changeStyle(styleName) {
+
+  document.getElementById(
+    "hairPreviewTitle"
+  ).innerText =
+    "✨ AIおすすめスタイルを適用";
+
+  document.getElementById(
+    "hairType"
+  ).innerText =
+    "おすすめ：" + styleName;
+
+  document.getElementById(
+    "preview"
+  ).scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
 </script>
 
 </body>
