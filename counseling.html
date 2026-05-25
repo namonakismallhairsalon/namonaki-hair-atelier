@@ -87,6 +87,14 @@ img {
   border-radius: 12px;
   margin-top: 10px;
 }
+
+.style-card {
+  background: #f7f5f1;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 12px;
+  text-align: left;
+}
 </style>
 </head>
 
@@ -244,6 +252,44 @@ document.getElementById("counselingText").innerText =
     document.getElementById("preview").src =
       selectedImage;
   }
+
+if (gender === "men") {
+
+  document.getElementById(
+    "styleSuggestions"
+  ).innerHTML = `
+    <div class="style-card">
+      ✂ ナチュラルマッシュ
+    </div>
+
+    <div class="style-card">
+      ✂ センターパート
+    </div>
+
+    <div class="style-card">
+      ✂ ゆるパーマ
+    </div>
+  `;
+
+} else {
+
+  document.getElementById(
+    "styleSuggestions"
+  ).innerHTML = `
+    <div class="style-card">
+      ✂ 韓国風レイヤー
+    </div>
+
+    <div class="style-card">
+      ✂ シースルーボブ
+    </div>
+
+    <div class="style-card">
+      ✂ 柔らかミディ
+    </div>
+  `;
+}
+
 }
 
 /* ===== 保存機能 ===== */
