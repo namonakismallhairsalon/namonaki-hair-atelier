@@ -328,20 +328,23 @@ if (gender === "men") {
 } else {
 
   document.getElementById(
-    "styleSuggestions"
-  ).innerHTML = `
-    <div class="style-card">
-      ✂ 韓国風レイヤー
-    </div>
+  "styleSuggestions"
+).innerHTML = `
+  <div class="style-card"
+    onclick="changeStyle('韓国風レイヤー')">
+    ✂ 韓国風レイヤー
+  </div>
 
-    <div class="style-card">
-      ✂ シースルーボブ
-    </div>
+  <div class="style-card"
+    onclick="changeStyle('シースルーボブ')">
+    ✂ シースルーボブ
+  </div>
 
-    <div class="style-card">
-      ✂ 柔らかミディ
-    </div>
-  `;
+  <div class="style-card"
+    onclick="changeStyle('柔らかミディ')">
+    ✂ 柔らかミディ
+  </div>
+`;
 }
 
 }
