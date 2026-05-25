@@ -115,19 +115,35 @@ img {
   <p id="loadingText"></p>
 
   <!-- RESULT -->
-  <div id="result" class="result-box">
-    <h2>診断結果</h2>
+<div id="result" class="result-box">
+  <h2>AI診断結果</h2>
 
-    <p id="hairType"></p>
+  <p id="faceType"></p>
+  <p id="vibe"></p>
+  <p id="hairType"></p>
 
-    <img id="preview">
+  <img id="preview">
 
-    <br><br>
+  <br><br>
 
-    <button class="primary" onclick="saveLINE()">LINEで保存</button>
-    <button class="primary" onclick="saveStory()">ストーリー保存</button>
-    <button class="gray" onclick="location.reload()">戻る</button>
-  </div>
+  <button class="primary" onclick="generateHair()">
+    似合う髪型を合成
+  </button>
+
+  <br><br>
+
+  <button class="primary" onclick="saveLINE()">
+    LINEで保存
+  </button>
+
+  <button class="primary" onclick="saveStory()">
+    ストーリー保存
+  </button>
+
+  <button class="gray" onclick="location.reload()">
+    戻る
+  </button>
+</div>
 
 </div>
 
@@ -168,17 +184,38 @@ function showResult() {
   document.getElementById("result").style.display = "block";
 
   let hairType = "";
+  let faceType = "";
+  let vibe = "";
 
   if (gender === "men") {
-    hairType = "ナチュラルショート / 清潔感アップスタイル";
+
+    faceType = "顔型：面長寄り";
+    vibe = "雰囲気：ナチュラル × 清潔感";
+
+    hairType =
+    "おすすめ：ナチュラルショート / センターパート / ゆるパーマ";
+
   } else {
-    hairType = "ゆるふわレイヤー / 小顔バランススタイル";
+
+    faceType = "顔型：卵型寄り";
+    vibe = "雰囲気：柔らかい印象";
+
+    hairType =
+    "おすすめ：レイヤースタイル / シースルーバング";
   }
 
-  document.getElementById("hairType").innerText = hairType;
+  document.getElementById("faceType").innerText =
+    faceType;
+
+  document.getElementById("vibe").innerText =
+    vibe;
+
+  document.getElementById("hairType").innerText =
+    hairType;
 
   if (selectedImage) {
-    document.getElementById("preview").src = selectedImage;
+    document.getElementById("preview").src =
+      selectedImage;
   }
 }
 
@@ -209,6 +246,10 @@ function downloadText(filename, text) {
   link.href = URL.createObjectURL(blob);
   link.download = filename;
   link.click();
+}
+
+function generateHair() {
+  alert("次のステップでリアル髪型合成を実装します");
 }
 
 </script>
