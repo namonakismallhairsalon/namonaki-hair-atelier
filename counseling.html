@@ -152,7 +152,7 @@ img {
 
   <!-- RESULT -->
 <div id="result" class="result-box">
-  <h2>AI診断結果</h2>
+  <h2 id="resultTop">AI診断結果</h2>
 
   <p id="faceType"></p>
 <p id="vibe"></p>
@@ -441,10 +441,10 @@ window.changeStyle = function(styleName) {
     "おすすめ：" + styleName;
 
   setTimeout(() => {
-    document.getElementById("faceType").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+    document.getElementById("resultTop").scrollIntoView({
+  behavior: "smooth",
+  block: "start"
+});
 
     setTimeout(() => {
       window.scrollBy({
