@@ -306,21 +306,24 @@ document.getElementById("counselingText").innerText =
 
 if (gender === "men") {
 
-  document.getElementById(
-    "styleSuggestions"
-  ).innerHTML = `
-    <div class="style-card">
-      ✂ ナチュラルマッシュ
-    </div>
+ document.getElementById(
+  "styleSuggestions"
+).innerHTML = `
+  <div class="style-card"
+    onclick="changeStyle('ナチュラルマッシュ')">
+    ✂ ナチュラルマッシュ
+  </div>
 
-    <div class="style-card">
-      ✂ センターパート
-    </div>
+  <div class="style-card"
+    onclick="changeStyle('センターパート')">
+    ✂ センターパート
+  </div>
 
-    <div class="style-card">
-      ✂ ゆるパーマ
-    </div>
-  `;
+  <div class="style-card"
+    onclick="changeStyle('ゆるパーマ')">
+    ✂ ゆるパーマ
+  </div>
+`;
 
 } else {
 
