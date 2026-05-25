@@ -443,16 +443,22 @@ window.changeStyle = function(styleName) {
   document.getElementById("hairType").innerText =
     "おすすめ：" + styleName;
 
-  
-setTimeout(() => {
-  const el = document.getElementById("resultTop");
-  const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+  setTimeout(() => {
+    const el =
+      document.getElementById("resultTop");
 
-  window.scrollTo({
-    top: y,
-    behavior: "smooth"
-  });
-}, 100);
+    const y =
+      el.getBoundingClientRect().top +
+      window.pageYOffset - 80;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth"
+    });
+
+  }, 100);
+
+};
 </script>
 
 </body>
