@@ -359,6 +359,42 @@ counselingText =
 document.getElementById("counselingText").innerText =
   counselingText;
 
+const items = [
+  "faceType",
+  "vibe",
+  "hairType",
+  "counselingText"
+];
+
+items.forEach((id) => {
+  document.getElementById(id)
+    .classList.remove("show");
+});
+
+setTimeout(() => {
+  document.getElementById(
+    "faceType"
+  ).classList.add("show");
+}, 200);
+
+setTimeout(() => {
+  document.getElementById(
+    "vibe"
+  ).classList.add("show");
+}, 500);
+
+setTimeout(() => {
+  document.getElementById(
+    "hairType"
+  ).classList.add("show");
+}, 800);
+
+setTimeout(() => {
+  document.getElementById(
+    "counselingText"
+  ).classList.add("show");
+}, 1100);
+
   if (selectedImage) {
     document.getElementById("preview").src =
       selectedImage;
