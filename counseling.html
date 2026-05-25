@@ -444,11 +444,12 @@ window.changeStyle = function(styleName) {
   ).innerText =
     "おすすめ：" + styleName;
 
-  document.getElementById(
-    "preview"
-  ).scrollIntoView({
-    behavior: "smooth"
+  setTimeout(() => {
+  document.getElementById("preview").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
   });
+}, 100);
 }
 
 </script>
