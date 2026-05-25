@@ -316,6 +316,66 @@ img {
   font-weight:bold;
 }
 
+.face-detect-box{
+  position:absolute;
+  width:90px;
+  height:110px;
+  border:2px solid
+  rgba(200,182,166,0.95);
+
+  border-radius:16px;
+  top:35px;
+  left:45px;
+
+  box-shadow:
+  0 0 20px
+  rgba(200,182,166,0.45);
+
+  animation:
+  detectMove 2s ease-in-out infinite;
+}
+
+.face-detect-box::before,
+.face-detect-box::after{
+  content:"";
+  position:absolute;
+  width:14px;
+  height:14px;
+  border-color:#fff;
+}
+
+.face-detect-box::before{
+  top:-3px;
+  left:-3px;
+  border-top:2px solid;
+  border-left:2px solid;
+}
+
+.face-detect-box::after{
+  bottom:-3px;
+  right:-3px;
+  border-bottom:2px solid;
+  border-right:2px solid;
+}
+
+@keyframes detectMove{
+
+  0%{
+    transform:
+    translateY(-3px);
+  }
+
+  50%{
+    transform:
+    translateY(3px);
+  }
+
+  100%{
+    transform:
+    translateY(-3px);
+  }
+}
+
 </style>
 </head>
 
