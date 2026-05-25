@@ -168,16 +168,32 @@ document.getElementById("fileInput").addEventListener("change", function(e){
 });
 
 function startAI() {
-  document.getElementById("inputBox").style.display = "none";
-  document.getElementById("loader").style.display = "block";
-  document.getElementById("loadingText").innerText = "AI分析中...";
+
+  if (!selectedImage) {
+    alert("顔写真を選択してください");
+    return;
+  }
+
+  document.getElementById("inputBox").style.display =
+    "none";
+
+  document.getElementById("loader").style.display =
+    "block";
+
+  document.getElementById("loadingText").innerText =
+    "AIが顔バランスを分析中...";
 
   setTimeout(() => {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("loadingText").innerText = "";
+
+    document.getElementById("loader").style.display =
+      "none";
+
+    document.getElementById("loadingText").innerText =
+      "";
 
     showResult();
-  }, 2000);
+
+  }, 2500);
 }
 
 function showResult() {
