@@ -119,6 +119,7 @@ img {
   <h2>AI診断結果</h2>
 
   <p id="faceType"></p>
+<p id="counselingText"></p>
   <p id="vibe"></p>
   <p id="hairType"></p>
 
@@ -202,6 +203,7 @@ function showResult() {
   let hairType = "";
   let faceType = "";
   let vibe = "";
+let counselingText = "";
 
   if (gender === "men") {
 
@@ -210,6 +212,8 @@ function showResult() {
 
     hairType =
     "おすすめ：ナチュラルショート / センターパート / ゆるパーマ";
+counselingText =
+"顔まわりのバランスを見ると、横に少し厚みを出すスタイルが似合いやすいです。トップを上げすぎない方が自然にまとまりやすく、清潔感のある印象になります。";
 
   } else {
 
@@ -218,6 +222,8 @@ function showResult() {
 
     hairType =
     "おすすめ：レイヤースタイル / シースルーバング";
+counselingText =
+"顔まわりに柔らかさを出すレイヤー系が相性◎。前髪に軽さを出すことで小顔バランスが作りやすくなります。";
   }
 
   document.getElementById("faceType").innerText =
