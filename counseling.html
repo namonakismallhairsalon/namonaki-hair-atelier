@@ -407,26 +407,93 @@ function startAI() {
     return;
   }
 
-  document.getElementById("inputBox").style.display =
-    "none";
+  document.getElementById(
+    "inputBox"
+  ).style.display = "none";
 
-  document.getElementById("loader").style.display =
-    "block";
+  document.getElementById(
+    "loadingScreen"
+  ).style.display = "block";
 
-  document.getElementById("loadingText").innerText =
-    "AIが顔バランスを分析中...";
+  const loadingText =
+    document.getElementById(
+      "loadingText"
+    );
 
-  setTimeout(() => {
+  const progressFill =
+    document.getElementById(
+      "progressFill"
+    );
 
-    document.getElementById("loader").style.display =
-      "none";
+  const percentText =
+    document.getElementById(
+      "percentText"
+    );
 
-    document.getElementById("loadingText").innerText =
-      "";
+  let percent = 0;
 
-    showResult();
+  const scanMessages = [
+    "Face Balance Scan...",
+    "Bone Structure Scan...",
+    "Hair Compatibility...",
+    "AI Styling Analyze..."
+  ];
 
-  }, 2500);
+  let msgIndex = 0;
+
+  const textLoop = setInterval(() => {
+
+    msgIndex++;
+
+    if (
+      msgIndex >=
+      scanMessages.length
+    ) {
+      msgIndex = 0;
+    }
+
+    loadingText.innerText =
+      scanMessages[msgIndex];
+
+  }, 700);
+
+  const progressLoop =
+    setInterval(() => {
+
+    percent += 2;
+
+    progressFill.style.width =
+      percent + "%";
+
+    percentText.innerText =
+      percent + "%";
+
+    if (percent >= 100) {
+
+      clearInterval(
+        progressLoop
+      );
+
+      clearInterval(
+        textLoop
+      );
+
+      loadingText.innerText =
+        "診断完了";
+
+      setTimeout(() => {
+
+        document.getElementById(
+          "loadingScreen"
+        ).style.display =
+          "none";
+
+        showResult();
+
+      }, 700);
+    }
+
+  }, 50);
 }
 
 function showResult() {
