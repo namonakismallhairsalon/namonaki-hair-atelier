@@ -948,9 +948,45 @@ setTimeout(() => {
 
 setTimeout(() => {
 
-  let match = 92;
-  let clean = 89;
-  let style = 95;
+  let matchTarget = 92;
+  let cleanTarget = 89;
+  let styleTarget = 95;
+
+  if (gender === "women") {
+    matchTarget = 94;
+    cleanTarget = 91;
+    styleTarget = 96;
+  }
+
+  let match = 0;
+  let clean = 0;
+  let style = 0;
+
+  const interval = setInterval(() => {
+
+    if (match < matchTarget) match++;
+    if (clean < cleanTarget) clean++;
+    if (style < styleTarget) style++;
+
+    document.getElementById("matchScore").style.width = match + "%";
+    document.getElementById("cleanScore").style.width = clean + "%";
+    document.getElementById("styleScore").style.width = style + "%";
+
+    document.getElementById("matchPercent").innerText = match + "%";
+    document.getElementById("cleanPercent").innerText = clean + "%";
+    document.getElementById("stylePercent").innerText = style + "%";
+
+    if (
+      match >= matchTarget &&
+      clean >= cleanTarget &&
+      style >= styleTarget
+    ) {
+      clearInterval(interval);
+    }
+
+  }, 20);
+
+}, 1500);
 
   if (gender === "women") {
     match = 94;
