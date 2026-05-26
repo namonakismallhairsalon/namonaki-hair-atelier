@@ -719,6 +719,10 @@ img {
 let gender = "men";
 let selectedImage = "";
 
+let matchTarget = 0;
+let cleanTarget = 0;
+let styleTarget = 0;
+
 function setGender(g) {
 
   gender = g;
@@ -1019,16 +1023,6 @@ else {
     ) {
       clearInterval(interval);
     }
-
-let reactionText = "";
-
-if (styleTarget > 95) {
-  reactionText = "✨非常にバランスが良い印象です";
-} else if (styleTarget > 90) {
-  reactionText = "👍とても似合いやすいスタイルです";
-} else {
-  reactionText = "💡少し調整でさらに良くなります";
-}
 
   }, 20);
 
