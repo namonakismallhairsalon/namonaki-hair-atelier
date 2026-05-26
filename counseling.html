@@ -429,6 +429,26 @@ img {
   line-height:1.7;
 }
 
+.result-card{
+  transition:
+  transform .25s ease,
+  box-shadow .25s ease;
+}
+
+.result-card:active{
+  transform:
+  scale(.98);
+}
+
+.result-card:hover{
+  transform:
+  translateY(-3px);
+
+  box-shadow:
+  0 14px 30px
+  rgba(0,0,0,.12);
+}
+
 </style>
 </head>
 
