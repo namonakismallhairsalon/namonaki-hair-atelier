@@ -1183,40 +1183,29 @@ document.getElementById("hairOverlay").style.display = "block";
 
       setTimeout(() => {
 
-        document.getElementById(
-          "loadingScreen"
-        ).style.display =
-          "none";
+  document.getElementById("loadingScreen").style.display = "none";
 
-        document.getElementById(
-          "hairPreviewTitle"
-        ).innerText =
-          "✨ AIおすすめスタイルを適用";
+  document.getElementById("hairPreviewTitle").innerText =
+    "✨ AIおすすめスタイルを適用";
 
-        if (
-          gender === "men"
-        ) {
+  let reactionText = "";
 
-          document.getElementById(
-            "hairType"
-          ).innerText =
-          "おすすめ：ナチュラルマッシュ";
+  if (styleTarget > 95) {
+    reactionText = "✨非常にバランスが良い印象です";
+  } else if (styleTarget > 90) {
+    reactionText = "👍とても似合いやすいスタイルです";
+  } else {
+    reactionText = "💡少し調整でさらに良くなります";
+  }
 
-        } else {
+  document.querySelector("#counselingText .result-main").innerText =
+    reactionText;
 
-          document.getElementById(
-            "hairType"
-          ).innerText =
-          "おすすめ：韓国風レイヤー";
-        }
+  document.getElementById("preview").scrollIntoView({
+    behavior: "smooth"
+  });
 
-        document.getElementById(
-          "preview"
-        ).scrollIntoView({
-          behavior:"smooth"
-        });
-
-      }, 700);
+}, 700);
     }
 
   }, 50);
