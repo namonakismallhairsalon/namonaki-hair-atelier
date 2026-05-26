@@ -1150,6 +1150,16 @@ function generateHair() {
 
 document.getElementById("hairOverlay").style.display = "block";
 
+if (gender === "men") {
+  document.getElementById("hairOverlay").src =
+    "https://i.imgur.com/XXXXXXX.png";
+} else {
+  document.getElementById("hairOverlay").src =
+    "https://i.imgur.com/YYYYYYY.png";
+}
+
+document.getElementById("hairOverlay").style.display = "block";
+
   let percent = 0;
 
   const interval =
