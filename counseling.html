@@ -449,6 +449,47 @@ img {
   rgba(0,0,0,.12);
 }
 
+#scoreArea{
+  margin-top:20px;
+}
+
+.score-card{
+  background:#fff;
+  padding:14px;
+  border-radius:18px;
+  margin-top:12px;
+  text-align:left;
+  box-shadow:
+  0 8px 20px
+  rgba(0,0,0,.06);
+}
+
+.score-label{
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.score-bar{
+  width:100%;
+  height:10px;
+  background:#eee;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.score-fill{
+  width:0%;
+  height:100%;
+  background:#c8b6a6;
+  transition:1s ease;
+}
+
+.score-card span{
+  display:block;
+  margin-top:8px;
+  font-weight:bold;
+}
+
 </style>
 </head>
 
@@ -904,6 +945,50 @@ setTimeout(() => {
     "counselingText"
   ).classList.add("show-card");
 }, 1100);
+
+setTimeout(() => {
+
+  let match = 92;
+  let clean = 89;
+  let style = 95;
+
+  if (gender === "women") {
+    match = 94;
+    clean = 91;
+    style = 96;
+  }
+
+  document.getElementById(
+    "matchScore"
+  ).style.width =
+    match + "%";
+
+  document.getElementById(
+    "cleanScore"
+  ).style.width =
+    clean + "%";
+
+  document.getElementById(
+    "styleScore"
+  ).style.width =
+    style + "%";
+
+  document.getElementById(
+    "matchPercent"
+  ).innerText =
+    match + "%";
+
+  document.getElementById(
+    "cleanPercent"
+  ).innerText =
+    clean + "%";
+
+  document.getElementById(
+    "stylePercent"
+  ).innerText =
+    style + "%";
+
+}, 1500);
 
   if (selectedImage) {
     document.getElementById("preview").src =
