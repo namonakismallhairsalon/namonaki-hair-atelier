@@ -774,17 +774,25 @@ counselingText =
 "顔まわりに柔らかさを出すレイヤー系が相性◎。前髪に軽さを出すことで小顔バランスが作りやすくなります。";
   }
 
-  document.getElementById("faceType").innerText =
-    faceType;
+  document.querySelector(
+  "#faceType .result-main"
+).innerText =
+faceType;
 
-  document.getElementById("vibe").innerText =
-    vibe;
+document.querySelector(
+  "#vibe .result-main"
+).innerText =
+vibe;
 
-  document.getElementById("hairType").innerText =
-    hairType;
+document.querySelector(
+  "#hairType .result-main"
+).innerText =
+hairType;
 
-document.getElementById("counselingText").innerText =
-  counselingText;
+document.querySelector(
+  "#counselingText .result-main"
+).innerText =
+counselingText;
 
 const items = [
   "faceType",
