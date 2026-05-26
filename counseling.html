@@ -963,9 +963,30 @@ setTimeout(() => {
 
 setTimeout(() => {
 
-  let matchTarget = 92;
-  let cleanTarget = 89;
-  let styleTarget = 95;
+  let base = 0;
+
+if (gender === "men") {
+  base = 85;
+} else {
+  base = 88;
+}
+
+// 顔タイプで変化させる（AIっぽい部分）
+if (faceType.includes("面長")) {
+  matchTarget = base + 5;
+  cleanTarget = base + 2;
+  styleTarget = base + 7;
+} 
+else if (faceType.includes("卵型")) {
+  matchTarget = base + 8;
+  cleanTarget = base + 6;
+  styleTarget = base + 9;
+}
+else {
+  matchTarget = base + 3;
+  cleanTarget = base + 3;
+  styleTarget = base + 4;
+}
 
   if (gender === "women") {
     matchTarget = 94;
@@ -998,6 +1019,19 @@ setTimeout(() => {
     ) {
       clearInterval(interval);
     }
+
+let reactionText = "";
+
+if (styleTarget > 95) {
+  reactionText = "✨非常にバランスが良い印象です";
+} else if (styleTarget > 90) {
+  reactionText = "👍とても似合いやすいスタイルです";
+} else {
+  reactionText = "💡少し調整でさらに良くなります";
+}
+
+document.getElementById("counselingText").innerText =
+  reactionText;
 
   }, 20);
 
