@@ -774,8 +774,53 @@ document.getElementById("fileInput").addEventListener("change", function(e){
   const reader = new FileReader();
 
   reader.onload = function(event) {
-    selectedImage = event.target.result;
-  }
+
+  const img = new Image();
+
+  img.onload = function() {
+
+    const canvas =
+      document.createElement("canvas");
+
+    const ctx =
+      canvas.getContext("2d");
+
+    const maxWidth = 500;
+
+    const scale =
+      maxWidth / img.width;
+
+    canvas.width =
+      maxWidth;
+
+    canvas.height =
+      img.height * scale;
+
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+    // 圧縮した画像
+    selectedImage =
+      canvas.toDataURL(
+        "image/jpeg",
+        0.5
+      );
+
+    // プレビュー表示
+    document.getElementById(
+      "previewImage"
+    ).src =
+      selectedImage;
+  };
+
+  img.src =
+    event.target.result;
+};
 
   reader.readAsDataURL(file);
 });
