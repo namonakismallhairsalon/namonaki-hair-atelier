@@ -1109,6 +1109,18 @@ else {
   if (selectedImage) {
     document.getElementById("preview").src =
       selectedImage;
+
+document.getElementById(
+  "preview"
+).onload = function () {
+
+  const h = this.offsetHeight;
+
+  document.getElementById(
+    "previewWrap"
+  ).style.height =
+    h + "px";
+};
   }
 
 if (gender === "men") {
