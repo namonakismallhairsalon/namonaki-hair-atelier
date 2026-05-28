@@ -1170,26 +1170,16 @@ async function generateHair() {
 
   try {
 
-    const response =
-  await fetch(
-    "/api/generateHair"
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type":
-            "application/json"
-          },
-
-          body: JSON.stringify({
-            image:
-            selectedImage,
-
-            gender:
-            gender
-          })
-        }
-      );
+    const response = await fetch("/api/generateHair", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    image: selectedImage,
+    gender: gender
+  })
+});
 
     const data =
       await response.json();
