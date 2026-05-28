@@ -1245,6 +1245,15 @@ try {
       document.getElementById("hairOverlay").src =
         data.image;
 
+document.getElementById("hairOverlay")
+.onload = function () {
+
+  document.getElementById(
+    "hairOverlay"
+  ).style.display = "block";
+
+  alert("画像表示成功");
+};
       document.getElementById("hairOverlay").style.display =
         "block";
     }
