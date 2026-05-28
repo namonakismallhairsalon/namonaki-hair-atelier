@@ -1122,48 +1122,25 @@ function downloadText(filename, text) {
 
 async function generateHair() {
 
-  document.getElementById(
-    "loadingScreen"
-  ).style.display =
-    "block";
+  document.getElementById("loadingScreen").style.display = "block";
+  document.getElementById("scanPreview").src = selectedImage;
+  document.getElementById("loadingText").innerText = "AI Hair Styling...";
 
-  document.getElementById(
-    "scanPreview"
-  ).src =
-    selectedImage;
-
-  document.getElementById(
-    "loadingText"
-  ).innerText =
-    "AI Hair Styling...";
-
-  document.getElementById(
-    "progressFill"
-  ).style.width =
-    "0%";
-
-  document.getElementById(
-    "percentText"
-  ).innerText =
-    "0%";
+  document.getElementById("progressFill").style.width = "0%";
+  document.getElementById("percentText").innerText = "0%";
 
   let percent = 0;
 
-  const fakeLoading =
-  setInterval(() => {
+  const fakeLoading = setInterval(() => {
 
     if (percent < 90) {
       percent += 4;
     }
 
-    document.getElementById(
-      "progressFill"
-    ).style.width =
+    document.getElementById("progressFill").style.width =
       percent + "%";
 
-    document.getElementById(
-      "percentText"
-    ).innerText =
+    document.getElementById("percentText").innerText =
       percent + "%";
 
   }, 80);
@@ -1171,81 +1148,57 @@ async function generateHair() {
   try {
 
     const response = await fetch("/api/generateHair", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    image: selectedImage,
-    gender: gender
-  })
-});
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        image: selectedImage,
+        gender: gender
+      })
+    });
 
     const data = await response.json();
 
-console.log(data);
-alert(JSON.stringify(data));
+    alert(JSON.stringify(data));
 
-    clearInterval(
-      fakeLoading
-    );
+    clearInterval(fakeLoading);
 
-    document.getElementById(
-      "progressFill"
-    ).style.width =
-      "100%";
+    document.getElementById("progressFill").style.width = "100%";
+    document.getElementById("percentText").innerText = "100%";
 
-    document.getElementById(
-      "percentText"
-    ).innerText =
-      "100%";
+    if (data.image) {
+      document.getElementById("hairOverlay").src =
+        data.image;
 
-    document.getElementById(
-      "hairOverlay"
-    ).src =
-      data.image;
+      document.getElementById("hairOverlay").style.display =
+        "block";
+    }
 
-    document.getElementById(
-      "hairOverlay"
-    ).style.display =
-      "block";
-
-    document.getElementById(
-      "loadingText"
-    ).innerText =
+    document.getElementById("loadingText").innerText =
       "スタイル合成完了";
 
     setTimeout(() => {
 
-      document.getElementById(
-        "loadingScreen"
-      ).style.display =
+      document.getElementById("loadingScreen").style.display =
         "none";
 
-      document.getElementById(
-        "hairPreviewTitle"
-      ).innerText =
+      document.getElementById("hairPreviewTitle").innerText =
         "✨ AIおすすめスタイルを適用";
 
-      document.getElementById(
-        "preview"
-      ).scrollIntoView({
+      document.getElementById("preview").scrollIntoView({
         behavior: "smooth"
       });
 
     }, 700);
 
-  } catch(err){
+  } catch (err) {
 
     console.error(err);
 
-    alert(
-      "AI合成エラー"
-    );
+    alert("AI合成エラー：" + err.message);
 
-    document.getElementById(
-      "loadingScreen"
-    ).style.display =
+    document.getElementById("loadingScreen").style.display =
       "none";
   }
 }
