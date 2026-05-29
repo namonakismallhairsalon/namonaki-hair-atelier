@@ -1250,27 +1250,19 @@ try {
     if (data.image) {
       document.getElementById("hairOverlay").src =
         if (data.image) {
+  const hairOverlay =
+    document.getElementById("hairOverlay");
 
-  console.log("返ってきた画像URL:", data.image);
-  alert(data.image);
+  hairOverlay.src = data.image;
 
-  document.getElementById("hairOverlay").src =
-    data.image;
-
-  document.getElementById("hairOverlay")
-    .onload = function () {
-
-    document.getElementById(
-      "hairOverlay"
-    ).style.display = "block";
-
+  hairOverlay.onload = function () {
+    hairOverlay.style.display = "block";
     alert("画像表示成功");
   };
 
-  document.getElementById("hairOverlay")
-    .onerror = function () {
-      alert("画像URLエラー");
-    };
+  hairOverlay.onerror = function () {
+    alert("画像読み込み失敗");
+  };
 }
 
 document.getElementById("loadingText").innerText =
