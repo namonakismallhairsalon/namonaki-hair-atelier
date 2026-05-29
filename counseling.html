@@ -1249,23 +1249,32 @@ try {
 
     if (data.image) {
       document.getElementById("hairOverlay").src =
-        data.image;
+        if (data.image) {
 
-document.getElementById("hairOverlay")
-.onload = function () {
+  console.log("返ってきた画像URL:", data.image);
+  alert(data.image);
 
-  document.getElementById(
-    "hairOverlay"
-  ).style.display = "block";
+  document.getElementById("hairOverlay").src =
+    data.image;
 
-  alert("画像表示成功");
-};
-      document.getElementById("hairOverlay").style.display =
-        "block";
-    }
+  document.getElementById("hairOverlay")
+    .onload = function () {
 
-    document.getElementById("loadingText").innerText =
-      "スタイル合成完了";
+    document.getElementById(
+      "hairOverlay"
+    ).style.display = "block";
+
+    alert("画像表示成功");
+  };
+
+  document.getElementById("hairOverlay")
+    .onerror = function () {
+      alert("画像URLエラー");
+    };
+}
+
+document.getElementById("loadingText").innerText =
+  "スタイル合成完了";
 
     setTimeout(() => {
 
