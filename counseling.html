@@ -1292,37 +1292,46 @@ document.getElementById("hairOverlay")
   }
 }
 
-window.changeStyle =  function(styleName, event){
+window.changeStyle = function(styleName, event){
 
-function showResultFromStyle(styleName) {
+  document.querySelectorAll(".style-card")
+  .forEach(card => {
+    card.classList.remove("selected-style");
+  });
 
-  const el = document.getElementById("hairType");
+  event.currentTarget.classList.add(
+    "selected-style"
+  );
 
-  el.innerText = "おすすめ：" + styleName;
-
-  document.getElementById("hairType")
-    .scrollIntoView({ behavior: "smooth" });
-}
-
-document.querySelectorAll(".style-card")
-.forEach(card => {
-  card.classList.remove("selected-style");
-});
-
-event.currentTarget.classList.add(
-  "selected-style"
-);
-
-  alert(styleName + " を選択");
-
-  document.getElementById("hairPreviewTitle").innerText =
+  document.getElementById(
+    "hairPreviewTitle"
+  ).innerText =
     "✨ AIおすすめスタイルを適用";
 
-  document.getElementById("hairType").innerText =
+  document.getElementById(
+    "hairType"
+  ).innerText =
     "おすすめ：" + styleName;
 
-showResultFromStyle(styleName);
+  showResultFromStyle(styleName);
 };
+
+
+// ↓ これは外に置く（超重要）
+function showResultFromStyle(styleName) {
+
+  const el =
+    document.getElementById(
+      "hairType"
+    );
+
+  el.innerText =
+    "おすすめ：" + styleName;
+
+  el.scrollIntoView({
+    behavior: "smooth"
+  });
+}
 
   setTimeout(() => {
     const el =
