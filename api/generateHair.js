@@ -16,10 +16,7 @@ export default async function handler(req, res) {
 
   try {
 
-    const {
-      image,
-      gender
-    } = req.body;
+    const { image, gender } = req.body;
 
     if (!image) {
       return res.status(400).json({
@@ -27,13 +24,11 @@ export default async function handler(req, res) {
       });
     }
 
-    // 仮のAI結果（本人画像を返す）
-const hairstyle = image;
-
-return res.status(200).json({
-  success: true,
-  image: hairstyle
-});
+    // 仮の髪型オーバーレイ画像
+    const hairstyle =
+      gender === "men"
+      ? "https://i.imgur.com/XpQ7YwQ.png"
+      : "https://i.imgur.com/5vZQKQx.png";
 
     return res.status(200).json({
       success: true,
