@@ -1318,37 +1318,38 @@ window.changeStyle = function(styleName, event){
 };
 
 
-// ↓ これは外に置く（超重要）
-function showResultFromStyle(styleName) {
+window.changeStyle = function(styleName, event){
 
-  const el =
-    document.getElementById(
-      "hairType"
-    );
+  document.querySelectorAll(".style-card")
+  .forEach(card => {
+    card.classList.remove("selected-style");
+  });
 
-  el.innerText =
+  event.currentTarget.classList.add(
+    "selected-style"
+  );
+
+  document.getElementById(
+    "hairPreviewTitle"
+  ).innerText =
+    "✨ AIおすすめスタイルを適用";
+
+  document.querySelector(
+    "#hairType .result-main"
+  ).innerText =
     "おすすめ：" + styleName;
 
-  el.scrollIntoView({
+  const el =
+    document.getElementById("resultTop");
+
+  const y =
+    el.getBoundingClientRect().top +
+    window.pageYOffset - 80;
+
+  window.scrollTo({
+    top: y,
     behavior: "smooth"
   });
-}
-
-  setTimeout(() => {
-    const el =
-      document.getElementById("resultTop");
-
-    const y =
-      el.getBoundingClientRect().top +
-      window.pageYOffset - 80;
-
-    window.scrollTo({
-      top: y,
-      behavior: "smooth"
-    });
-
-  }, 100);
-
 };
 </script>
 
