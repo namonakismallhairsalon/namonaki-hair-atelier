@@ -1294,6 +1294,16 @@ document.getElementById("hairOverlay")
 
 window.changeStyle =  function(styleName, event){
 
+function showResultFromStyle(styleName) {
+
+  const el = document.getElementById("hairType");
+
+  el.innerText = "おすすめ：" + styleName;
+
+  document.getElementById("hairType")
+    .scrollIntoView({ behavior: "smooth" });
+}
+
 document.querySelectorAll(".style-card")
 .forEach(card => {
   card.classList.remove("selected-style");
