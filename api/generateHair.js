@@ -26,9 +26,9 @@ export default async function handler(req, res) {
 
     // 仮の髪型オーバーレイ画像
     const hairstyle =
-      gender === "men"
-      ? "https://i.imgur.com/XpQ7YwQ.png"
-      : "https://i.imgur.com/5vZQKQx.png";
+  gender === "men"
+  ? "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800"
+  : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800";
 
     return res.status(200).json({
       success: true,
