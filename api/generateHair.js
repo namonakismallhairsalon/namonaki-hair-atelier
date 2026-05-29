@@ -27,11 +27,13 @@ export default async function handler(req, res) {
       });
     }
 
-    // 仮のAI結果（次で本物生成AIに変更）
-    const hairstyle =
-      gender === "men"
-      ? "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800"
-      : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800";
+    // 仮のAI結果（本人画像を返す）
+const hairstyle = image;
+
+return res.status(200).json({
+  success: true,
+  image: hairstyle
+});
 
     return res.status(200).json({
       success: true,
