@@ -1247,20 +1247,15 @@ try {
     document.getElementById("progressFill").style.width = "100%";
     document.getElementById("percentText").innerText = "100%";
 
-    if (data.image) {
+    if (data.advice) {
 
-  const hairOverlay =
-    document.getElementById("hairOverlay");
+  alert(data.advice);
 
-alert(data.image);
-console.log(data.image);
-
-  hairOverlay.src = data.image;
-
-  hairOverlay.onload = function () {
-    hairOverlay.style.display = "block";
-    alert("画像表示成功");
-  };
+  document.getElementById(
+    "loadingText"
+  ).innerText =
+    "AI分析完了";
+}
 
   hairOverlay.onerror = function () {
     alert("画像読み込み失敗");
