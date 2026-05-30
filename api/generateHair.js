@@ -24,15 +24,49 @@ export default async function handler(req, res) {
       });
     }
 
-    // 仮の髪型オーバーレイ画像
-    const hairstyle =
-  gender === "men"
-  ? "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800"
-  : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800";
+    const apiKey =
+      process.env.OPENAI_API_KEY;
+
+    const response = await fetch(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+          Authorization:
+            `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: "gpt-4o-mini",
+          messages: [
+            {
+              role: "system",
+              content:
+                "あなたは美容師AIです。顔写真から似合う髪型を3つ提案してください。"
+            },
+            {
+              role: "user",
+              content:
+                `性別:${gender}`
+            }
+          ],
+          max_tokens: 300
+        })
+      }
+    );
+
+    const data =
+      await response.json();
+
+    const advice =
+      data.choices?.[0]
+      ?.message?.content ||
+      "髪型分析失敗";
 
     return res.status(200).json({
       success: true,
-      image: hairstyle
+      advice
     });
 
   } catch (error) {
