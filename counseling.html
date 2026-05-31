@@ -1208,7 +1208,14 @@ function downloadText(filename, text) {
 
 async function generateHair() {
 
-  document.getElementById("loadingScreen").style.display = "block";
+  const loading =
+  document.getElementById(
+    "loadingScreen"
+  );
+
+loading.style.display = "none";
+loading.style.zIndex = "-1";
+loading.style.pointerEvents = "none";
   document.getElementById("scanPreview").src = selectedImage;
   document.getElementById("loadingText").innerText = "AI Hair Styling...";
 
