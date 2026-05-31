@@ -873,9 +873,16 @@ loading.style.display = "block";
 loading.style.zIndex = "999";
 loading.style.pointerEvents = "auto";
 
- document.getElementById(
-   "scanPreview"
- ).src = selectedImage;
+ const scanPreview =
+  document.getElementById(
+    "scanPreview"
+  );
+
+scanPreview.src =
+  selectedImage;
+
+scanPreview.style.objectPosition =
+  "50% 30%";
 
   const loadingText =
     document.getElementById(
