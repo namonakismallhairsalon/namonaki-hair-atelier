@@ -861,9 +861,14 @@ function startAI() {
     "inputBox"
   ).style.display = "none";
 
+  const loading =
   document.getElementById(
     "loadingScreen"
-  ).style.display = "block";
+  );
+
+loading.style.display = "block";
+loading.style.zIndex = "999";
+loading.style.pointerEvents = "auto";
 
  document.getElementById(
    "scanPreview"
